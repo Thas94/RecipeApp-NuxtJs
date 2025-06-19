@@ -17,12 +17,21 @@
                     <span>{{ recipe.rating }} {{ recipe.reviewCount }}</span>
                 </div>
                 </div>
-                <BaseBtn :to="`/recipes/${recipe.id}`" label="View" />
+                <Button class="px-4 py-2 text-white self-start bg-dodgeroll-gold rounded-md text-base lg:text-lg cursor-pointer" @click="visible = true" label="View"></Button>
             </div>
+    </div>
+    <Dialog v-model:visible="visible" modal :header=recipe.name :style="{ width: '25rem' }">
+            <span class="text-surface-500 dark:text-surface-400 block mb-8">View Recipe?</span>
+            <div class="flex justify-end gap-2">
+                <Button type="button" label="No" severity="secondary" @click="visible = false"></Button>
+                <BaseBtn type="button" :to="`/recipes/${recipe.id}`" label="Yes" @click="visible = false" />
             </div>
+        </Dialog>
 </template>
 
 <script setup lang="ts">
+    const visible = ref(false);
+
     import { type Recipe } from '~/types/types';
     defineProps<{
         recipe: Recipe; 

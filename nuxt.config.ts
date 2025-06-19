@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxt/icon',
     '@nuxt/image',
-    '@primevue/nuxt-module'
+    '@primevue/nuxt-module',
+    '@pinia/nuxt',
   ],
   googleFonts: {
     families: {
@@ -29,5 +30,8 @@ export default defineNuxtConfig({
         tailwindcss: {},
         autoprefixer: {},
     },
-  }
+  },
+  runtimeConfig: {
+    movieApiUrl: '',
+  },
 })
