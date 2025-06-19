@@ -34,9 +34,9 @@
 <script setup lang="ts">
     import {type RecipeResponse} from "../types/types";
     const {data, error} = await useFetch<RecipeResponse>("https://dummyjson.com/recipes?limit=12")
-    //definePageMeta({
-        //layout: "login"
-    //});
+        //definePageMeta({
+            //layout: "login"
+        //});
     useSeoMeta({
   title: "Nuxtcipes",
   description: "Recipes for you to cook!",

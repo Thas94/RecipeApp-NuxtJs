@@ -8,7 +8,7 @@
         to="/"
         class="px-4 py-2 text-white bg-dodgeroll-gold rounded-md text-lg cursor-pointer"
       >
-        Go home
+        Go homez
       </NuxtLink>
     </section>
   </template>

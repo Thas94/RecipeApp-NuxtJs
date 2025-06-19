@@ -14,8 +14,15 @@
     "@nuxt/image": "^1.9.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.13.1",
+    "@primevue/forms": "^4.3.5",
     "nuxt": "^3.16.0",
+    "primevue": "^4.3.5",
+    "tailwindcss-primeui": "^0.6.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@primevue/nuxt-module": "^4.3.5",
+    "postcss-import": "^16.1.1"
   }
 }

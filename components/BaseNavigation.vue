@@ -12,6 +12,9 @@
         <li>
           <NuxtLink to="/about">About</NuxtLink>
         </li>
+        <li>
+          <NuxtLink to="/primeview-test">Primeview</NuxtLink>
+        </li>
       </ul>
     </nav>
   </header>

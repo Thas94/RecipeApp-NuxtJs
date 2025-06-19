@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxt/icon',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@primevue/nuxt-module'
   ],
   googleFonts: {
     families: {
@@ -15,5 +16,18 @@ export default defineNuxtConfig({
   },
   image: {
     domains: ['https://dummyjson.com']
+  },
+  css: ["@/assets/styles/tailwind.css"],
+  primevue: {
+      options: {
+          theme: 'none'
+      }
+  },
+  postcss: {
+    plugins: {
+        "postcss-import": {},
+        tailwindcss: {},
+        autoprefixer: {},
+    },
   }
 })
