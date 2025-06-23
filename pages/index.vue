@@ -23,7 +23,10 @@
         <section class="py-20 container">
         <h2 class="text-3xl lg:text-5xl mb-2">Discover, Create, Share</h2>
         <p class="text-lg lg:text-xl mb-8">Check out our most popular recipes!</p>
-        <div v-if="moviesLength > 1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+        <div v-if="loading" class="loader">
+            <Icon name="svg-spinners:8-dots-rotate" size="64" />
+        </div>
+        <div v-else-if="moviesLength > 1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
             <RecipeCard v-for="recipe in (movieList as any).recipes" :recipe="recipe" />
         </div>
         <p v-else class="text-xl">Oops, no movies found.</p>
@@ -38,6 +41,13 @@
     const movieStore = useMovieStore()
     movieStore.getMovies()
     const { movieList, moviesLength } = storeToRefs(movieStore)
+
+    const loading = ref(true);
+    onMounted(() => {
+    setTimeout(() => {
+        loading.value = false; // Modifică valoarea referinței
+    }, 1600);
+    });
 
     //const movieStore = useMovieStore()
     // const { movieList } = storeToRefs(movieStore)
@@ -61,3 +71,9 @@
   twitterCard: "summary",
 });
 </script>
+
+<style>
+    .loader {
+        text-align: center;
+    }
+</style>
