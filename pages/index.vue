@@ -30,7 +30,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 <RecipeCard v-for="recipe in displayedMovies" :recipe="recipe" />
             </div>
-            <div class="flex justify-center mt-6">
+            <div class="flex justify-center mt-6"  v-if="itemsPerPage <= (movies as any).limit">
                 <button class="bg-black hover:bg-gray-800 px-4 py-2 rounded-md text-white" @click="loadMoreMovies">Load More</button>
             </div>
         </div>
