@@ -59,16 +59,15 @@
     // const { getMovies } = movieStore
     
     const currentPage = ref(1);
-    const itemsPerPage = 12;
+    const itemsPerPage = ref(12);
     import {type RecipeResponse} from "../types/types";
     const {data: movies, error} = await useFetch<RecipeResponse>("https://dummyjson.com/recipes")
 
     const displayedMovies = computed(() => {
         debugger
-        const startIndex = (currentPage.value - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
+        const endIndex = itemsPerPage.value;
         return Array.isArray(movies.value?.recipes)
-            ? movies.value?.recipes.slice(startIndex, endIndex)
+            ? movies.value?.recipes.slice(0, endIndex)
             : [];
     });
 
@@ -77,8 +76,7 @@
     };
 
     const loadMoreMovies = () => {
-        currentPage.value++;
-        //scrollToTop();
+        itemsPerPage.value = itemsPerPage.value * 2;
     }
 
     onMounted(() => {
