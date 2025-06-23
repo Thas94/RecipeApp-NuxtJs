@@ -26,8 +26,13 @@
         <div v-if="loading" class="loader">
             <Icon name="svg-spinners:8-dots-rotate" size="64" />
         </div>
-        <div v-else-if="moviesLength > 1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
-            <RecipeCard v-for="recipe in (movieList as any).recipes" :recipe="recipe" />
+        <div v-else-if="moviesLength > 1">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+                <RecipeCard v-for="recipe in displayedMovies" :recipe="recipe" />
+            </div>
+            <div class="flex justify-center mt-6">
+                <button class="bg-black hover:bg-gray-800 px-4 py-2 rounded-md text-white" @click="loadMoreMovies">Load More</button>
+            </div>
         </div>
         <p v-else class="text-xl">Oops, no movies found.</p>
     </section>       
@@ -36,7 +41,7 @@
 
 <script setup lang="ts">
 
-    const error = ref(false)
+    //const error = ref(false)
 
     const movieStore = useMovieStore()
     movieStore.getMovies()
@@ -45,7 +50,7 @@
     const loading = ref(true);
     onMounted(() => {
     setTimeout(() => {
-        loading.value = false; // Modifică valoarea referinței
+        loading.value = false;
     }, 1600);
     });
 
@@ -53,11 +58,39 @@
     // const { movieList } = storeToRefs(movieStore)
     // const { getMovies } = movieStore
     
-    // import {type RecipeResponse} from "../types/types";
-    // const {data, error} = await useFetch<RecipeResponse>("https://dummyjson.com/recipes?limit=12")
-        //definePageMeta({
-            //layout: "login"
-        //});
+    const currentPage = ref(1);
+    const itemsPerPage = 12;
+    import {type RecipeResponse} from "../types/types";
+    const {data: movies, error} = await useFetch<RecipeResponse>("https://dummyjson.com/recipes")
+
+    const displayedMovies = computed(() => {
+        debugger
+        const startIndex = (currentPage.value - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return Array.isArray(movies.value?.recipes)
+            ? movies.value?.recipes.slice(startIndex, endIndex)
+            : [];
+    });
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const loadMoreMovies = () => {
+        currentPage.value++;
+        //scrollToTop();
+    }
+
+    onMounted(() => {
+        scrollToTop();
+    });
+    
+        // definePageMeta({
+        //     layout: "login"
+        // });
+
+    
+    
     useSeoMeta({
   title: "Nuxtcipes",
   description: "Recipes for you to cook!",
