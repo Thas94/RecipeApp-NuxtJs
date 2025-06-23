@@ -1,27 +1,16 @@
 
 <template>
-    <div class="card flex justify-center">
-        <Button label="Show" @click="visible = true" />
-        <Dialog v-model:visible="visible" modal header="Edit Profile" :style="{ width: '25rem' }">
-            <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your information.</span>
-            <div class="flex items-center gap-4 mb-4">
-                <label for="username" class="font-semibold w-24">Username</label>
-                <InputText id="username" class="flex-auto" autocomplete="off" />
-            </div>
-            <div class="flex items-center gap-4 mb-8">
-                <label for="email" class="font-semibold w-24">Email</label>
-                <InputText id="email" class="flex-auto" autocomplete="off" />
-            </div>
-            <div class="flex justify-end gap-2">
-                <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
-                <Button type="button" label="Save" @click="visible = false"></Button>
-            </div>
-        </Dialog>
+    <div class="card">
+        <Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
+
+        <div class="p-4 text-center">
+            <img :src="`https://primefaces.org/cdn/primevue/images/nature/nature${first + 1}.jpg`" :alt="first" class="rounded w-full sm:w-[30rem]" />
+        </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const visible = ref(false);
+const first = ref(0);
 </script>

@@ -6,6 +6,8 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 Make sure to install dependencies:
 
+npm install primevue @primeuix/themes
+
 ```bash
 # npm
 npm install
