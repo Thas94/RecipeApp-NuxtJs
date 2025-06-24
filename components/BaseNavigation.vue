@@ -15,11 +15,37 @@
         <li>
           <NuxtLink to="/primeview-test">Primeview</NuxtLink>
         </li>
+        <li>
+        </li>
       </ul>
+      <div class="mini-cart">
+        <div class="cart-total">
+          <button class="flex bg-dodgeroll-gold text-black text-center text-xl lg:text-2xl font-semibold-md p-2 rounded-md">
+            <Icon name="mdi:cart-outline" size="30px"/>
+            <div class="relative">{{ recipesInCart.length }}</div>
+          </button>
+        </div>
+      </div>
     </nav>
   </header>
 </template>
 
 <script setup lang="ts">
+    const {recipesInCart} = useCartStore()
 
 </script>
+
+<style>
+
+  .mini-cart {
+      display: inline-block;
+      position: relative;
+  }
+
+  .cart-total{
+    display: inline-block;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+</style>

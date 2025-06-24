@@ -23,14 +23,12 @@
         <section class="py-20 container">
         <h2 class="text-3xl lg:text-5xl mb-2">Discover, Create, Share</h2>
         <p class="text-lg lg:text-xl mb-8">Check out our most popular recipes!</p>
-        <div v-if="loading" class="loader">
-            <Icon name="svg-spinners:8-dots-rotate" size="64" />
-        </div>
-        <div v-else-if="moviesLength > 1">
+        <Loader v-if="loading"/>
+        <div v-else-if="recipeLength > 1">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 <RecipeCard v-for="recipe in displayedMovies" :recipe="recipe" />
             </div>
-            <div class="flex justify-center mt-6"  v-if="itemsPerPage <= (movies as any).limit">
+            <div class="flex justify-center mt-6"  v-if="itemsPerPage <= (recipeList as any).limit">
                 <button class="bg-black hover:bg-gray-800 px-4 py-2 rounded-md text-white" @click="loadMoreMovies">Load More</button>
             </div>
         </div>
@@ -41,33 +39,25 @@
 
 <script setup lang="ts">
 
-    //const error = ref(false)
-
-    const movieStore = useMovieStore()
-    movieStore.getMovies()
-    const { movieList, moviesLength } = storeToRefs(movieStore)
+    const recipeStore = useRecipeStore()
+    recipeStore.getRecipes()
+    const { recipeList, recipeLength } = storeToRefs(recipeStore)
+    const itemsPerPage = ref(12);
 
     const loading = ref(true);
     onMounted(() => {
-    setTimeout(() => {
-        loading.value = false;
-    }, 1600);
+        setTimeout(() => {
+            loading.value = false;
+        }, 1600);
     });
-
-    //const movieStore = useMovieStore()
-    // const { movieList } = storeToRefs(movieStore)
-    // const { getMovies } = movieStore
     
-    const currentPage = ref(1);
-    const itemsPerPage = ref(12);
-    import {type RecipeResponse} from "../types/types";
-    const {data: movies, error} = await useFetch<RecipeResponse>("https://dummyjson.com/recipes")
-
     const displayedMovies = computed(() => {
-        debugger
+        
         const endIndex = itemsPerPage.value;
-        return Array.isArray(movies.value?.recipes)
-            ? movies.value?.recipes.slice(0, endIndex)
+        //@ts-expect-error	
+        return Array.isArray(recipeList.value?.recipes)
+        //@ts-expect-error
+            ? recipeList.value?.recipes.slice(0, endIndex)
             : [];
     });
 
@@ -81,13 +71,7 @@
 
     onMounted(() => {
         scrollToTop();
-    });
-    
-        // definePageMeta({
-        //     layout: "login"
-        // });
-
-    
+    }); 
     
     useSeoMeta({
   title: "Nuxtcipes",
@@ -104,7 +88,8 @@
 </script>
 
 <style>
-    .loader {
-        text-align: center;
+
+    button {
+        cursor: pointer;
     }
 </style>

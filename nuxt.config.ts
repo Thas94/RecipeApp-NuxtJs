@@ -44,6 +44,6 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    movieApiUrl: '',
+    recipeApiUrl: '',
   },
 })

@@ -32,7 +32,7 @@
 <script setup lang="ts">
     const visible = ref(false);
 
-    import { type Recipe } from '~/types/types';
+    import { type Recipe } from '~/models/recipeResponse';
     defineProps<{
         recipe: Recipe; 
     }>();
