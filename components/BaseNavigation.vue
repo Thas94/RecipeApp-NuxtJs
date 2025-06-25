@@ -20,7 +20,7 @@
       </ul>
       <div class="mini-cart">
         <div class="cart-total">
-          <button class="flex bg-dodgeroll-gold text-black text-center text-xl lg:text-2xl font-semibold-md p-2 rounded-md">
+          <button class="flex bg-dodgeroll-gold text-black text-center text-xl lg:text-2xl font-semibold-md p-2 rounded-md" @click="showMenu">
             <Icon name="mdi:cart-outline" size="30px"/>
             <div class="relative">{{ recipesInCart.length }}</div>
           </button>
@@ -28,10 +28,18 @@
       </div>
     </nav>
   </header>
+  <div v-if="isMenuOpen">
+    <SideMenu :isMenuOpen = "isMenuOpen"/>
+  </div>
 </template>
 
 <script setup lang="ts">
     const {recipesInCart} = useCartStore()
+    const isMenuOpen = ref(false)
+
+    const showMenu = () => {
+      isMenuOpen.value = !isMenuOpen.value
+    }
 
 </script>
 
