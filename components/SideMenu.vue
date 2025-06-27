@@ -8,6 +8,8 @@ const props = defineProps({
   },
 });
 
+const {recipesInCart} = useCartStore()
+
 const isOpen = ref(props.isMenuOpen)
 const menuRef = ref<HTMLElement | null>(null)
 
@@ -19,12 +21,6 @@ const closeMenu = () => {
   isOpen.value = false
 }
 
-// Close menu when clicking outside
-const handleClickOutside = (event: MouseEvent) => {
-  if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
-    closeMenu()
-  }
-}
 
 // Close menu on escape key
 const handleEscapeKey = (event: KeyboardEvent) => {
@@ -34,12 +30,10 @@ const handleEscapeKey = (event: KeyboardEvent) => {
 }
 
 onMounted(() => {
-  document.addEventListener('mousedown', handleClickOutside)
   document.addEventListener('keydown', handleEscapeKey)
 })
 
 onUnmounted(() => {
-  document.removeEventListener('mousedown', handleClickOutside)
   document.removeEventListener('keydown', handleEscapeKey)
 })
 
@@ -52,15 +46,6 @@ watch(isOpen, (newValue) => {
   }
 })
 
-const menuItems = [
-  { name: 'Dashboard', icon: '🏠', href: '#' },
-  { name: 'Profile', icon: '👤', href: '#' },
-  { name: 'Settings', icon: '⚙️', href: '#' },
-  { name: 'Projects', icon: '📁', href: '#' },
-  { name: 'Team', icon: '👥', href: '#' },
-  { name: 'Analytics', icon: '📊', href: '#' },
-  { name: 'Help', icon: '❓', href: '#' },
-]
 </script>
 
 <template>
@@ -97,14 +82,13 @@ const menuItems = [
 
     <!-- Side Menu -->
     <nav
-      ref="menuRef"
-      class="fixed top-0 left-0 h-full w-2/5 bg-gradient-to-b from-slate-200 to-orange-500 text-black transform transition-transform duration-300 ease-in-out z-40 shadow-2xl"
+      class="fixed top-0 left-0 h-full w-2/5 bg-gradient-to-b from-slate-200 to-orange-500 text-black z-40 shadow-2xl"
       :class="{ 'translate-x-0': isOpen, '-translate-x-full': !isOpen }"
     >
       <div class="p-6">
         <!-- Menu Header -->
         <div class="flex items-center justify-between mb-8">
-          <h2 class="text-xl font-bold text-black">Navigation</h2>
+          <h2 class="text-xl font-bold text-black">Cart Details</h2>
           <button
             @click="closeMenu"
             class="text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none"
@@ -117,35 +101,18 @@ const menuItems = [
         </div>
 
         <!-- Menu Items -->
-        <ul class="space-y-2">
-          <li v-for="item in menuItems" :key="item.name">
+        <ul class="space-y-2" v-if="recipesInCart.length > 0">
+          <li v-for="item in recipesInCart" :key="item.id">
             <a
-              :href="item.href"
               class="flex items-center px-4 py-3 text-black hover:text-white hover:bg-gray-700 rounded-lg transition-all duration-200 group"
               @click="closeMenu"
             >
-              <span class="text-xl mr-3 group-hover:scale-110 transition-transform duration-200">
-                {{ item.icon }}
-              </span>
               <span class="font-medium">{{ item.name }}</span>
             </a>
           </li>
         </ul>
+        <p v-else>Nothing in the cart.</p>
 
-        <!-- Menu Footer -->
-        <div class="absolute bottom-6 left-6 right-6">
-          <div class="border-t border-gray-700 pt-4">
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
-                U
-              </div>
-              <div class="ml-3">
-                <p class="text-sm font-medium text-white">John Doe</p>
-                <p class="text-xs text-gray-400">john@example.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </nav>
   </div>

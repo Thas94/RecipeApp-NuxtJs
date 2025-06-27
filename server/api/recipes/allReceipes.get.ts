@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
 
-    const config = useRuntimeConfig()
-    const recipes = await $fetch(`${config.recipeApiUrl}/recipes`)
+    const {recipeApiUrl} = useRuntimeConfig()
+    const recipes = await $fetch(`${recipeApiUrl}/recipes`)
     return recipes;
 });

@@ -1,7 +1,7 @@
 <template>
     <main>
         <section class="bg-[#F79F1A]">
-        <div class="container flex flex-col lg:flex-row items-center py-20 gap-10">
+        <div class="container flex flex-col lg:flex-row items-center py-20">
             <div class="flex-1 order-2 lg:order-1 text-center lg:text-left">
             <h1 class="text-4xl lg:text-6xl font-extrabold mb-6 text-balance">
                 Master the Kitchen with Ease: Unleash Your Inner Chef Today!
@@ -15,7 +15,7 @@
                 Browse Recipes
             </button>
             </div>
-            <div class="flex-1 order-1 lg:order-2"> 
+            <div class="order-1"> 
             <NuxtImg sizes="xs:100vw sm:667px" format="webp" src="/nuxt-course-hero.png" densities="x1" alt="" />
             </div>
         </div>
@@ -39,9 +39,10 @@
 
 <script setup lang="ts">
 
-    const recipeStore = useRecipeStore()
-    recipeStore.getRecipes()
-    const { recipeList, recipeLength } = storeToRefs(recipeStore)
+    //const recipeStore = useRecipeStore()
+    //recipeStore.getRecipes()
+    const {getRecipes} = useRecipeStore()
+    const { recipeList, recipeLength } = storeToRefs(useRecipeStore())
     const itemsPerPage = ref(12);
 
     const loading = ref(true);
@@ -69,22 +70,23 @@
         itemsPerPage.value = itemsPerPage.value * 2;
     }
 
-    onMounted(() => {
+    onMounted( async () => {
+        await getRecipes()
         scrollToTop();
     }); 
     
     useSeoMeta({
-  title: "Nuxtcipes",
-  description: "Recipes for you to cook!",
-  ogTitle: "Nuxtcipes",
-  ogDescription: "Recipes for you to cook!",
-  ogImage: "/nuxt-course-hero.png",
-  ogUrl: `http:localhost:3001`,
-  twitterTitle: "Nuxtcipes",
-  twitterDescription: "Recipes for you to cook!",
-  twitterImage: "/nuxt-course-hero.png",
-  twitterCard: "summary",
-});
+    title: "Nuxtcipes",
+    description: "Recipes for you to cook!",
+    ogTitle: "Nuxtcipes",
+    ogDescription: "Recipes for you to cook!",
+    ogImage: "/nuxt-course-hero.png",
+    ogUrl: `http:localhost:3001`,
+    twitterTitle: "Nuxtcipes",
+    twitterDescription: "Recipes for you to cook!",
+    twitterImage: "/nuxt-course-hero.png",
+    twitterCard: "summary",
+    });
 </script>
 
 <style>
