@@ -5,13 +5,10 @@ export const useRecipeStore = defineStore('recipeStore', () => {
 
     const recipe = ref({}) as Ref<Recipe>
     const recipeList = ref([{}]) as Ref<RecipeResponse[]>;
-    const recipeLength = ref(0)
 
     const getRecipes = async () => {
         const results = await $fetch('/api/recipes/allReceipes')
         recipeList.value = <RecipeResponse[]>results
-        //@ts-expect-error
-        recipeLength.value = recipeList.value.recipes.length
     }
 
     const getRecipeById = async (id: number) => {
@@ -20,7 +17,6 @@ export const useRecipeStore = defineStore('recipeStore', () => {
     }
 
     return {
-        recipeLength,
         recipeList,
         recipe,
         getRecipes,
