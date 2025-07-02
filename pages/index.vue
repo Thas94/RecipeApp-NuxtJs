@@ -53,8 +53,7 @@
     const itemsPerPage = ref(12);
     const loading = ref(true);
     const isSearched = ref(false);
-    //@ts-expect-error
-    const allRecipes = ref(recipeList.value?.recipes)
+    const allRecipes = ref(null)
 
     onMounted(async () => {
         setTimeout(() => {
@@ -62,6 +61,8 @@
         }, 1600);
 
         await getRecipes()
+        //@ts-expect-error
+        allRecipes.value = recipeList.value?.recipes
         scrollToTop();
     });
     
@@ -69,6 +70,7 @@
         debugger
         const endIndex = itemsPerPage.value;
         return Array.isArray(allRecipes.value)
+                //@ts-expect-error
             ? allRecipes.value.slice(0, endIndex)
             : [];
     });
@@ -88,6 +90,7 @@
     const searchRecipe = (event) => {
         setTimeout(() => {
             if (!event.query.trim().length) {
+                //@ts-expect-error
                 filteredRecipe.value = [...allRecipes.value];
             } else {
                 //@ts-expect-error
