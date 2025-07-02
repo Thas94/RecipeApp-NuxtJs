@@ -1,45 +1,38 @@
 <template>
-  <div class="p-inputgroup">
-    <AutoComplete
-      v-model="selectedItem"
-      :suggestions="filteredItems"
-      complete-method="searchItem"
-      field="label"
-      placeholder="Search"
-    />
-    <Button icon="pi pi-search" @click="triggerSearch" />
-    <Button icon="pi pi-times" severity="secondary" @click="clearSelection" />
+  <div>
+      <button @click="() => userSignOut()">
+  Signout 
+</button>
+      <h1>Profile</h1>
+      <pre>{{ data }}</pre> <p>{{ status }}</p>
+      <p>==============================</p>
+      last refreshed : {{ lastRefreshedAt }}
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import AutoComplete from 'primevue/autocomplete'
-import Button from 'primevue/button'
+<script setup lang="ts">
+  const {
+  status,
+  data,
+  lastRefreshedAt,
+  getCsrfToken,
+  getProviders,
+  getSession,
+  signIn,
+  signOut
+  } = useAuth()
+  //const data = await $fetch('/api/userSession')
 
-const selectedItem = ref(null)
-const filteredItems = ref([])
-
-const searchItem = (event) => {
-  // Simulate an async search
-  const query = event.query.toLowerCase()
-  filteredItems.value = allItems.filter(item =>
-    item.label.toLowerCase().includes(query)
-  )
-}
-
-const triggerSearch = () => {
-  if (selectedItem.value) {
-    alert(`Searching for: ${selectedItem.value.label}`)
+  async function userSignOut() {
+      await signOut()
   }
-}
 
-const clearSelection = () => {
-  selectedItem.value = null
-  filteredItems.value = []
-}
+   definePageMeta({
+       middleware: ["auth"]
+   })
 
-const allItems = [
-  { label: 'Apple' }, { label: 'Banana' }, { label: 'Mango' }, { label: 'Orange' }
-]
 </script>
+
+<style lang="scss" scoped>
+
+</style>

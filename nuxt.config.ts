@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@primevue/nuxt-module',
     '@pinia/nuxt',
+    '@sidebase/nuxt-auth'
   ],
   googleFonts: {
     families: {

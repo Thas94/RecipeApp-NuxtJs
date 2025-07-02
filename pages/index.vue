@@ -1,16 +1,16 @@
 <template>
     <main>
         <section class="bg-[#F79F1A]">
-        <div class="container flex flex-col lg:flex-row items-center py-20">
-            <div class="flex-1 order-2 lg:order-1 text-center lg:text-left">
-            <h1 class="text-4xl lg:text-6xl font-extrabold mb-6 text-balance">
+        <div class="container flex flex-col items-center py-20 lg:flex-row">
+            <div class="flex-1 order-2 text-center lg:order-1 lg:text-left">
+            <h1 class="mb-6 text-4xl font-extrabold lg:text-6xl text-balance">
                 Master the Kitchen with Ease: Unleash Your Inner Chef Today!
             </h1>
-            <p class="text-xl lg:text-2xl mb-8 text-balance">
+            <p class="mb-8 text-xl lg:text-2xl text-balance">
                 Discover recipes helping you to find the easiest way to cook.
             </p>
             <div class="px-4">
-                <p class="py-2 text-white self-start bg-dodgeroll-gold rounded-md text-lg cursor-pointer">
+                <p class="self-start py-2 text-lg text-white rounded-md cursor-pointer bg-dodgeroll-gold">
                 Search Recipes 
                 </p>
                 <div  class="p-inputgroup">
@@ -29,16 +29,16 @@
             </div>
         </div>
         </section> 
-        <section class="py-20 container">
-        <h2 class="text-3xl lg:text-5xl mb-2">Discover, Create, Share</h2>
-        <p class="text-lg lg:text-xl mb-8">Check out our most popular recipes!</p>
+        <section class="container py-20">
+        <h2 class="mb-2 text-3xl lg:text-5xl">Discover, Create, Share</h2>
+        <p class="mb-8 text-lg lg:text-xl">Check out our most popular recipes!</p>
         <Loader v-if="loading"/>
         <div v-else-if="(recipeList as any).recipes.length > 1">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 <RecipeCard v-for="recipe in displayedMovies" :recipe="recipe" />
             </div>
             <div class="flex justify-center mt-6" v-if="itemsPerPage <= (recipeList as any).limit && !isSearched">
-                <button class="bg-black hover:bg-gray-800 px-4 py-2 rounded-md text-white" @click="loadMoreMovies">Load More</button>
+                <button class="px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800" @click="loadMoreMovies">Load More</button>
             </div>
         </div>
         <p v-else class="text-xl">Oops, no movies found.</p>
