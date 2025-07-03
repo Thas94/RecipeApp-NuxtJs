@@ -69,18 +69,16 @@
   </template>
 
 <script setup lang="ts">
+
     import { type Recipe } from '~/models/recipeResponse';
     const {id} = useRoute().params;
     const loading = ref(true);
-
-    const recipeStore = useRecipeStore()
-    //@ts-expect-error
-    recipeStore.getRecipeById(id)
-    const { recipe } = storeToRefs(recipeStore)
-
+    const {getRecipeById} = useRecipeStore()
+    const { recipe } = storeToRefs(useRecipeStore())
     const {addToCart} = useCartStore()
 
-    onMounted(() => {
+    onMounted(async () => {
+      await getRecipeById(Number(id))
         setTimeout(() => {
             loading.value = false;
         }, 1600);

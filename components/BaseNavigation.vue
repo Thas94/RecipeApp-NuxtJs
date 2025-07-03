@@ -28,7 +28,7 @@
             <div class="relative">{{ recipesInCart.length }}</div>
           </button>
         </div>
-        <p>{{ data?.user.username }}</p>
+        <p>{{ (data?.user as any)?.username }}</p>
       </div>
     </nav>
   </header>
