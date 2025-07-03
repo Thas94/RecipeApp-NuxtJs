@@ -6,8 +6,7 @@ import { useCustomToast } from "#imports";
 
 export const useCartStore = defineStore('cartStore', () => {
 
-    //const recipesInCart = ref([]) as Ref<Recipe[]>
-    const recipesInCart = ref<Recipe[]>([])
+    const recipesInCart = ref([]) as Ref<Recipe[]>
     //const toast = useToast();
     const { showSuccess, showError, showInfo, showWarn, show, clear } = useCustomToast()
 

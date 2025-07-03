@@ -1,10 +1,10 @@
 <template>
     <Loader v-if="loading"/>
-    <div v-else class="flex flex-col max-w-screen-lg container py-20">
+    <div v-else class="container flex flex-col max-w-screen-lg py-20">
       <!-- Header -->
       <div class="flex flex-col mb-6">
-        <h2 class="text-5xl mb-4 font-semibold">{{ recipe?.name }}</h2>
-        <div class="flex gap-4 text-xl mb-6">
+        <h2 class="mb-4 text-5xl font-semibold">{{ recipe?.name }}</h2>
+        <div class="flex gap-4 mb-6 text-xl">
           <div class="flex items-center gap-1">
             <Icon name="mdi:clock-time-eight-outline" style="color: #f79f1a" />
             <span>{{ recipe?.cookTimeMinutes }}</span>
@@ -32,13 +32,13 @@
   
       <!-- Ingredients -->
       <div class="mb-8">
-        <h2 class="text-3xl font-semibold mb-4">Ingredients</h2>
-        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-lg">
+        <h2 class="mb-4 text-3xl font-semibold">Ingredients</h2>
+        <ul class="grid grid-cols-1 gap-2 text-lg md:grid-cols-2">
           <li v-for="ingredient in recipe?.ingredients">
-            <label class="flex gap-2 items-center">
+            <label class="flex items-center gap-2">
               <input class="hidden peer" type="checkbox" />
               <div
-                class="relative w-6 h-6 rounded-full border-2 border-dodgeroll-gold flex items-center justify-center peer-checked:after:absolute peer-checked:after:w-4 peer-checked:after:h-4 peer-checked:after:bg-dodgeroll-gold peer-checked:after:rounded-full"
+                class="relative flex items-center justify-center w-6 h-6 border-2 rounded-full border-dodgeroll-gold peer-checked:after:absolute peer-checked:after:w-4 peer-checked:after:h-4 peer-checked:after:bg-dodgeroll-gold peer-checked:after:rounded-full"
               ></div>
               <span class="peer-checked:line-through">
                 {{ ingredient }}
@@ -50,11 +50,11 @@
   
       <!-- Instructions -->
       <div>
-        <h2 class="text-3xl font-medium mb-4">Instructions</h2>
-        <ul class="flex flex-col text-lg gap-4">
+        <h2 class="mb-4 text-3xl font-medium">Instructions</h2>
+        <ul class="flex flex-col gap-4 text-lg">
           <li v-for="(instruction, index) in recipe?.instructions" class="flex gap-2">
             <span
-              class="flex items-center justify-center bg-dodgeroll-gold w-7 h-7 rounded-full text-white text-sm"
+              class="flex items-center justify-center text-sm text-white rounded-full bg-dodgeroll-gold w-7 h-7"
             >
               {{ index + 1 }}
             </span>
@@ -63,7 +63,7 @@
         </ul>
       </div>
 
-      <Button class="px-4 py-2 mt-5 text-white self-center bg-dodgeroll-gold rounded-md text-base lg:text-lg cursor-pointer" @click="addRecipeToCart(recipe)" label="Add to cart"></Button>
+      <Button class="self-center px-4 py-2 mt-5 text-base text-white rounded-md cursor-pointer bg-dodgeroll-gold lg:text-lg" @click="addRecipeToCart(recipe)" label="Add to cart"></Button>
 
     </div>
   </template>

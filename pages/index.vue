@@ -67,7 +67,6 @@
     });
     
     const displayedMovies = computed(() => {
-        debugger
         const endIndex = itemsPerPage.value;
         return Array.isArray(allRecipes.value)
                 //@ts-expect-error

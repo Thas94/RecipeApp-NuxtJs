@@ -21,13 +21,14 @@
         <li>
         </li>
       </ul>
-      <div class="mini-cart">
+      <div class="flex mini-cart">
         <div class="cart-total">
           <button class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold lg:text-2xl font-semibold-md" @click="showMenu">
             <Icon name="mdi:cart-outline" size="30px"/>
             <div class="relative">{{ recipesInCart.length }}</div>
           </button>
         </div>
+        <p>{{ data?.user.username }}</p>
       </div>
     </nav>
   </header>
@@ -65,36 +66,36 @@
 </template>
 
 <script setup lang="ts">
-        const form = ref({
-            email: '',
-            password: ''
-        })
-    const {signIn, status, lastRefreshedAt, signOut} = useAuth()
+    const form = ref({
+      email: '',
+      password: ''
+    })
+    const {signIn, status, lastRefreshedAt, signOut, data} = useAuth()
     const isLoading = ref(false)
     const isLoginVisible = ref(false);
     const isLogoutVisible = ref(false);
-    const {recipesInCart} = useCartStore()
+    const {recipesInCart} = storeToRefs(useCartStore())
     const isMenuOpen = ref(false)
     const isSignedIn = ref(false)
     
     onMounted(() => {
-            watchEffect(() => {
-                if(status.value == 'authenticated'){
-                    isLoading.value = false
-                    isSignedIn.value = true
-                    //navigateTo('/') 
-                } 
-            })
-        })
+      watchEffect(() => {
+        if(status.value == 'authenticated'){
+          isLoading.value = false
+          isSignedIn.value = true
+          //navigateTo('/') 
+        } 
+      })
+    })
 
     const showMenu = () => {
       isMenuOpen.value = !isMenuOpen.value
     }
 
     async function UserLogin() {
-            isLoading.value = true
-            await signIn('credentials', form.value)
-        }
+      isLoading.value = true
+      await signIn('credentials', form.value)
+    }
     
     async function userSignOut() {
       await signOut()
