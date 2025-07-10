@@ -29,14 +29,23 @@ export default NuxtAuthHandler({
         CredentialsProvider.default({ 
           name: 'Credentials',
           async authorize(credentials: any){
-            const user = {
+            const users = [{
+                id: 1,
                 email: "Thabiso@test.co.za",
                 password: "<r,y*hgn`~[52+->",
                 username: "Thabiso"
-            }
+            },
+            {
+              id: 2,
+              email: "Thabiso@test.co.za",
+              password: "<r,y*hgn`~[52+->",
+              username: "Thabiso"
+          }]
 
-            if(credentials.email === user.email && credentials.password === user.password)
-            return user
+          return users.find(x => x.email == credentials.email && x.password == credentials.password)
+
+            // if(credentials.email === user && credentials.password === user.password)
+            // return user
           }
         }),
       ]

@@ -1,9 +1,9 @@
 <template>
-    <div  class="flex flex-col shadow rounded-md">
+    <div  class="flex flex-col rounded-md shadow">
             <NuxtImg :src="recipe.image" sizes="xs:100vw sm:50vw lg:400px" format="webp" densities="x1" alt="" class="rounded-t-md" />
-            <div class="flex flex-col py-6 px-4 flex-1">
-                <p class="text-xl lg:text-2xl font-semibold mb-2">{{ recipe.name }}</p>
-                <div class="font-normal w-full bg-white/80 flex gap-8 text-lg lg:text-xl mb-4 mt-auto">
+            <div class="flex flex-col flex-1 px-4 py-6">
+                <p class="mb-2 text-xl font-semibold lg:text-2xl">{{ recipe.name }}</p>
+                <div class="flex w-full gap-8 mt-auto mb-4 text-lg font-normal bg-white/80 lg:text-xl">
                 <div class="flex items-center gap-1">
                     <Icon name="mdi:clock-time-eight-outline" style="color: #f79f1a" />
                     <span>{{ recipe.cookTimeMinutes }}</span>
@@ -17,16 +17,9 @@
                     <span>{{ recipe.rating }} {{ recipe.reviewCount }}</span>
                 </div>
                 </div>
-                <Button class="px-4 py-2 text-white self-start bg-dodgeroll-gold rounded-md text-base lg:text-lg cursor-pointer" @click="visible = true" label="View"></Button>
+                <BaseBtn class="self-start px-4 py-2 text-base text-white rounded-md cursor-pointer bg-dodgeroll-gold lg:text-lg" :to="`/recipes/${recipe.id}`" label="View"></BaseBtn>
             </div>
     </div>
-    <Dialog v-model:visible="visible" modal :header=recipe.name :style="{ width: '25rem' }">
-            <span class="text-surface-500 dark:text-surface-400 block mb-8">View Recipe?</span>
-            <div class="flex justify-end gap-2">
-                <Button type="button" label="No" severity="secondary" @click="visible = false"></Button>
-                <BaseBtn type="button" :to="`/recipes/${recipe.id}`" label="Yes" @click="visible = false" />
-            </div>
-        </Dialog>
 </template>
 
 <script setup lang="ts">

@@ -98,6 +98,7 @@
     }
     
     async function userSignOut() {
+      localStorage.removeItem("incart")
       await signOut()
     }
 
