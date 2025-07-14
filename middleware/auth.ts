@@ -3,6 +3,6 @@ export default defineNuxtRouteMiddleware((to) => {
     const router = useRouter()
     if (status.value !== 'authenticated') {
         //return
-        router.push('/auth/login')
+        router.push('/')
       }
 })

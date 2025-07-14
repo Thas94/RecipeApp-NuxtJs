@@ -69,7 +69,7 @@
 
         <div class="flex items-center justify-between pt-6 border-t">
           <p class="text-xl font-bold">Total: R {{ cartTotal }}</p>
-          <button class="px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">Checkout</button>
+          <Button class="px-6 py-2 text-white rounded bg-dodgeroll-gold hover:bg-orange-500" @click="checkout">Checkout</Button>
         </div>
       </div>
 
@@ -83,6 +83,8 @@
 </template>
 
 <script setup lang="ts">
+import { NuxtLink } from '#components';
+import { Button } from 'primevue';
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
@@ -93,12 +95,18 @@ const props = defineProps({
 });
 
 const { recipesInCart } = storeToRefs(useCartStore())
+const router = useRouter()
 
 const isOpen = ref(props.isMenuOpen)
 const menuRef = ref<HTMLElement | null>(null)
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
+}
+
+const checkout = () => {
+  router.push('checkout')
+  closeMenu()
 }
 
 const closeMenu = () => {
