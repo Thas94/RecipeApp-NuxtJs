@@ -5,11 +5,11 @@
       <div>
         <h2 class="mb-4 text-xl font-semibold">Billing Information</h2>
         <form class="space-y-4">
-          <input type="text" placeholder="Full Name" class="w-full p-3 border rounded" />
-          <input type="email" placeholder="Email Address" class="w-full p-3 border rounded" />
-          <input type="text" placeholder="Address" class="w-full p-3 border rounded" />
-          <input type="text" placeholder="City" class="w-full p-3 border rounded" />
-          <input type="text" placeholder="Postal Code" class="w-full p-3 border rounded" />
+          <input v-model="bill.name" type="text" placeholder="Full Name" class="w-full p-3 border rounded" />
+          <input v-model="bill.email" type="email" placeholder="Email Address" class="w-full p-3 border rounded" />
+          <input v-model="bill.address" type="text" placeholder="Address" class="w-full p-3 border rounded" />
+          <input v-model="bill.city" type="text" placeholder="City" class="w-full p-3 border rounded" />
+          <input v-model="bill.code" type="text" placeholder="Postal Code" class="w-full p-3 border rounded" />
         </form>
       </div>
 
@@ -45,8 +45,18 @@ const cartDetails = ref({
   userId: data.value?.user?.userId,
   orderStatusId: 1,
   orderDetails: '',
-  orderDateTime: new Date()
+  orderDateTime: new Date(),
+  billInfo: ''
 })
+
+const bill = ref({
+    name: '',
+    email: '',
+    address: '',
+    city: '',
+    code: ''
+  })
+
 definePageMeta({
   middleware: ["auth"]
 })
@@ -57,17 +67,19 @@ const cartTotal = computed(() =>
 )
 
 const placeOrder = async () => {
+
   cartDetails.value.orderDetails = JSON.stringify(recipesInCart.value.map((x) => ({
     id: x.id,
     name: x.name,
     img: x.image,
     price: `R${x.prepTimeMinutes * x.servings}`
   })))
+  cartDetails.value.billInfo = JSON.stringify(bill.value).toString()
 
   //@ts-ignore
   result.value = await $fetch('/api/cart/addToCart', {
     method: 'POST',
-    body: cartDetails.value
+    body: JSON.stringify(cartDetails.value)
   })
 
   if(result.value)
