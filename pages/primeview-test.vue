@@ -1,43 +1,44 @@
+
 <template>
-  <div class="max-w-4xl p-6 mx-auto">
-    <h1 class="mb-6 text-2xl font-bold">Checkout</h1>
+  <div class="flex justify-center card">
+      <Button type="button" :label="selectedMember ? selectedMember.name : 'Select Member'" @click="toggle" class="min-w-48" />
 
-    <div class="grid gap-6 md:grid-cols-2">
-      <!-- Billing Info -->
-      <div>
-        <h2 class="mb-4 text-xl font-semibold">Billing Information</h2>
-        <form class="space-y-4">
-          <input type="text" placeholder="Full Name" class="w-full p-3 border rounded" />
-          <input type="email" placeholder="Email Address" class="w-full p-3 border rounded" />
-          <input type="text" placeholder="Address" class="w-full p-3 border rounded" />
-          <input type="text" placeholder="City" class="w-full p-3 border rounded" />
-          <input type="text" placeholder="Postal Code" class="w-full p-3 border rounded" />
-        </form>
-      </div>
-
-      <!-- Order Summary -->
-      <div>
-        <h2 class="mb-4 text-xl font-semibold">Order Summary</h2>
-        <div class="p-4 space-y-2 bg-gray-100 rounded">
-          <div class="flex justify-between">
-            <span>Product A</span>
-            <span>$49.99</span>
+      <Popover ref="op">
+          <div class="flex flex-col gap-4">
+              <div>
+                  <span class="block mb-2 font-medium">Team Members</span>
+                  <ul class="flex flex-col p-0 m-0 list-none">
+                      <li v-for="member in members" :key="member.name" class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border" @click="selectMember(member)">
+                          <img :src="`https://primefaces.org/cdn/primevue/images/avatar/${member.image}`" style="width: 32px" />
+                          <div>
+                              <span class="font-medium">{{ member.name }}</span>
+                              <div class="text-sm text-surface-500 dark:text-surface-400">{{ member.email }}</div>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
           </div>
-          <div class="flex justify-between">
-            <span>Product B</span>
-            <span>$29.99</span>
-          </div>
-          <hr />
-          <div class="flex justify-between font-bold">
-            <span>Total</span>
-            <span>$79.98</span>
-          </div>
-        </div>
-
-        <button class="w-full py-3 mt-6 text-white bg-blue-600 rounded hover:bg-blue-700">
-          Place Order
-        </button>
-      </div>
-    </div>
+      </Popover>
   </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const op = ref();
+const selectedMember = ref(null);
+const members = ref([
+  { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
+  { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
+  { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
+]);
+
+const toggle = (event) => {
+  op.value.toggle(event);
+}
+
+const selectMember = (member) => {
+  selectedMember.value = member;
+  op.value.hide();
+}
+</script>

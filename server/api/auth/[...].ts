@@ -2,6 +2,8 @@
 import { NuxtAuthHandler } from '#auth'
 import  CredentialsProvider from 'next-auth/providers/credentials'
 
+const config = useRuntimeConfig()
+
 export default NuxtAuthHandler({
     callbacks: {
         // @ts-expect-error
@@ -29,23 +31,13 @@ export default NuxtAuthHandler({
         CredentialsProvider.default({ 
           name: 'Credentials',
           async authorize(credentials: any){
-            const users = [{
-                id: 1,
-                email: "Thabiso@test.co.za",
-                password: "<r,y*hgn`~[52+->",
-                username: "Thabiso"
-            },
-            {
-              id: 2,
-              email: "Thabiso@test.co.za",
-              password: "<r,y*hgn`~[52+->",
-              username: "Thabiso"
-          }]
+            console.log('Credentials', credentials)
+            const user = await fetch(`${config.apiUrl}/User/Login?email=${credentials.email}&password=${credentials.password}`, {
+              method: 'GET',
+              headers: { "Content-Type": "application/json" }
+            })
 
-          return users.find(x => x.email == credentials.email && x.password == credentials.password)
-
-            // if(credentials.email === user && credentials.password === user.password)
-            // return user
+            return user.json()
           }
         }),
       ]

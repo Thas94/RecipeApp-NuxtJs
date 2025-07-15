@@ -46,5 +46,6 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     recipeApiUrl: '',
+    apiUrl: '',
   },
 })
