@@ -136,7 +136,7 @@ async function UserLogin() {
 }
 
 async function userSignOut() {
-  localStorage.removeItem("incart")
+  recipesInCart.value.length = 0 
   await signOut()
 }
 

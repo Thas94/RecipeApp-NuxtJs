@@ -31,7 +31,6 @@ export default NuxtAuthHandler({
         CredentialsProvider.default({ 
           name: 'Credentials',
           async authorize(credentials: any){
-            console.log('Credentials', credentials)
             const user = await fetch(`${config.apiUrl}/User/Login?email=${credentials.email}&password=${credentials.password}`, {
               method: 'GET',
               headers: { "Content-Type": "application/json" }
