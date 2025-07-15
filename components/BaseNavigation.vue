@@ -21,15 +21,15 @@
       <div class="flex mini-cart">
         <div class="cart-total">
           <button
-            class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold lg:text-2xl font-semibold-md"
+            class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold"
             @click="showMenu">
-            <Icon name="mdi:cart-outline" size="30px" />
+            <Icon name="mdi:cart-outline" size="20px" />
             <div class="relative">{{ recipesInCart.length }}</div>
           </button>
         </div>
       </div>
       <div class="flex flex-col p-0 m-0 list-none" v-if="isSignedIn">
-        <div class="flex items-center gap-2 px-2 py-3 cursor-pointer rounded-border" @click="toggle">
+        <div class="flex items-center gap-2 px-2 py-3 cursor-pointer rounded-border" @click="openPopover">
           <img :src="`${(data?.user as any)?.avatar}`" style="width: 32px" />
           <div>
             <span class="font-medium">{{ (data?.user as any)?.fullName }}</span>
@@ -141,7 +141,7 @@ async function userSignOut() {
 }
 
 //@ts-expect-error
-const toggle = (event) => {
+const openPopover = (event) => {
   popover.value.toggle(event);
 }
 
@@ -149,7 +149,6 @@ const toggle = (event) => {
 
 <style>
 .mini-cart {
-  display: inline-block;
   position: relative;
 }
 

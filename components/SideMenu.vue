@@ -86,6 +86,8 @@
 import { NuxtLink } from '#components';
 import { Button } from 'primevue';
 import { ref, watch, onMounted, onUnmounted } from 'vue'
+const { signIn, status, lastRefreshedAt, signOut, data } = useAuth()
+const { showSuccess, showError, showInfo, showWarn, show, clear } = useCustomToast()
 
 const props = defineProps({
   isMenuOpen: {
@@ -105,8 +107,13 @@ const toggleMenu = () => {
 }
 
 const checkout = () => {
-  router.push('checkout')
-  closeMenu()
+  if(status.value == 'authenticated'){
+    router.push('checkout')
+    closeMenu()
+  }
+  else{
+    showWarn('Please login first.')
+  }
 }
 
 const closeMenu = () => {
