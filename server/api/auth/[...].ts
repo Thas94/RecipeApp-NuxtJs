@@ -31,12 +31,17 @@ export default NuxtAuthHandler({
         CredentialsProvider.default({ 
           name: 'Credentials',
           async authorize(credentials: any){
-            const user = await fetch(`${config.apiUrl}/User/Login?email=${credentials.email}&password=${credentials.password}`, {
+            const res = await fetch(`${config.apiUrl}/User/Login?email=${credentials.email}&password=${credentials.password}`, {
               method: 'GET',
               headers: { "Content-Type": "application/json" }
             })
 
-            return user.json()
+            const user = await res.json()
+
+            if(user.userId > 0)
+              return user
+            else
+              return null
           }
         }),
       ]

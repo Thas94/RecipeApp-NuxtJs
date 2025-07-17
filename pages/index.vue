@@ -35,13 +35,13 @@
         <Loader v-if="loading"/>
         <div v-else-if="(recipeList as any).recipes.length > 1">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
-                <RecipeCard v-for="recipe in displayedMovies" :recipe="recipe" />
+                <RecipeCard v-for="recipe in displayedRecipes" :recipe="recipe" />
             </div>
             <div class="flex justify-center mt-6" v-if="itemsPerPage <= (recipeList as any).limit && !isSearched">
-                <button class="px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800" @click="loadMoreMovies">Load More</button>
+                <button class="px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800" @click="loadMoreRecipes">Load More</button>
             </div>
         </div>
-        <p v-else class="text-xl">Oops, no movies found.</p>
+        <p v-else class="text-xl">Oops, no recipes found.</p>
     </section>       
      </main>
 </template>
@@ -66,7 +66,7 @@
         scrollToTop();
     });
     
-    const displayedMovies = computed(() => {
+    const displayedRecipes = computed(() => {
         const endIndex = itemsPerPage.value;
         return Array.isArray(allRecipes.value)
                 //@ts-expect-error
@@ -78,7 +78,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const loadMoreMovies = () => {
+    const loadMoreRecipes = () => {
         itemsPerPage.value = itemsPerPage.value * 2;
     }
 

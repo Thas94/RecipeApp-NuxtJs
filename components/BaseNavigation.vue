@@ -90,7 +90,7 @@
           </li>
           <li 
             class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border" >
-            Orders
+            <NuxtLink to="/orders/">Orders</NuxtLink>
           </li>
           <li 
             class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border" @click="isLogoutVisible = true">
