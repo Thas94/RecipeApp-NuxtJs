@@ -27,7 +27,7 @@
             <span>R {{ cartTotal }}</span>
           </div>
         </div>
-        <button class="w-full py-3 mt-6 text-white bg-dodgeroll-gold hover:bg-orange-500" @click="placeOrder">
+        <button class="w-full py-3 mt-6 text-white bg-dodgeroll-gold hover:bg-orange-500" :disabled="recipesInCart.length <= 0 ? true: false" @click="placeOrder">
           Place Order
         </button>
       </div>
@@ -36,9 +36,9 @@
 </template>
 
 <script setup lang="ts">
-import { type CartDetails } from '../models/cartDetails'
 const { signIn, status, lastRefreshedAt, signOut, data } = useAuth()
 const { showSuccess, showError, showInfo, showWarn, show, clear } = useCustomToast()
+const router = useRouter()
 
 const cartDetails = ref({
   //@ts-expect-error
@@ -76,14 +76,17 @@ const placeOrder = async () => {
   })))
   cartDetails.value.billInfo = JSON.stringify(bill.value).toString()
 
-  //@ts-ignore
   result.value = await $fetch('/api/cart/addToCart', {
     method: 'POST',
     body: JSON.stringify(cartDetails.value)
   })
 
   if(result.value)
+  {
     showSuccess('Added to cart!')
+    recipesInCart.value.length = 0 
+    router.push('/')
+  }
   else
     showError('An error occured.')
 }
