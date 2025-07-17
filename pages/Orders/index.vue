@@ -10,6 +10,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["auth"]
+})
 const { signIn, status, lastRefreshedAt, signOut, data } = useAuth()
 const { GetOrdersByUserId } = useOrderStore()
 const { orders } = storeToRefs(useOrderStore())
