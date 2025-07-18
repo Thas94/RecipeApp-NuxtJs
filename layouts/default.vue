@@ -2,7 +2,8 @@
     <div>
         <Toast />
         <BaseNavigation />
-        <slot />
+        <slot /> 
+        <!-- can use nuxt page -->
     </div>
 </template>
 

@@ -17,14 +17,12 @@
                     <span>{{ recipe.rating }} {{ recipe.reviewCount }}</span>
                 </div>
                 </div>
-                <BaseBtn class="self-start px-4 py-2 text-base text-white rounded-md cursor-pointer bg-dodgeroll-gold lg:text-lg" :to="`/recipes/${recipe.id}`" label="View"></BaseBtn>
+                <BaseBtn class="self-start px-4 py-2 text-base text-white rounded-md cursor-pointer hover:bg-primary-700 bg-dodgeroll-gold lg:text-lg" :to="`/recipes/${recipe.id}`" label="View"></BaseBtn>
             </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    const visible = ref(false);
-
     import { type Recipe } from '~/models/recipeResponse';
     defineProps<{
         recipe: Recipe; 

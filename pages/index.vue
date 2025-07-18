@@ -51,9 +51,11 @@
     const {getRecipes} = useRecipeStore()
     const { recipeList } = storeToRefs(useRecipeStore())
     const itemsPerPage = ref(12);
-    const loading = ref(true);
-    const isSearched = ref(false);
-    const allRecipes = ref(null)
+    const loading = ref(true)
+    const isSearched = ref(false)
+    const allRecipes = ref(null)  
+    const selectedRecipe = ref("");
+    const filteredRecipe = ref([{}]);
 
     onMounted(async () => {
         setTimeout(() => {
@@ -82,9 +84,6 @@
         itemsPerPage.value = itemsPerPage.value * 2;
     }
 
-    const selectedRecipe = ref("");
-    const filteredRecipe = ref([{}]);
-    const router = useRouter()
     //@ts-expect-error
     const searchRecipe = (event) => {
         setTimeout(() => {
@@ -129,7 +128,4 @@
 
 <style>
 
-    button {
-        cursor: pointer;
-    }
 </style>

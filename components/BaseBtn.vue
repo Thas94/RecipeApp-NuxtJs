@@ -1,9 +1,9 @@
 <template>
                 <NuxtLink
                 :to="to"
-                class="px-4 py-2 text-white self-start bg-dodgeroll-gold rounded-md text-base lg:text-lg cursor-pointer"
+                class="self-start px-4 py-2 text-base text-white rounded-md cursor-pointer bg-dodgeroll-gold lg:text-lg"
                 >
-                <slot>{{ label }}</slot>
+                {{ label }}
                 </NuxtLink>
 </template>
 
