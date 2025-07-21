@@ -75,6 +75,7 @@ const placeOrder = async () => {
   })))
   cartDetails.value.billInfo = JSON.stringify(bill.value).toString()
 
+  //@ts-ignore
   result.value = await $fetch('/api/cart/addToCart', {
     method: 'POST',
     body: JSON.stringify(cartDetails.value)
