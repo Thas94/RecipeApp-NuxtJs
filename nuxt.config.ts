@@ -34,14 +34,19 @@ export default defineNuxtConfig({
   // },
   primevue: {
     options: {
-        theme: 'none'
-    }
-},
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false
+        }
+      }
+    },
+  },
   postcss: {
     plugins: {
-        "postcss-import": {},
-        tailwindcss: {},
-        autoprefixer: {},
+      "postcss-import": {},
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
   runtimeConfig: {

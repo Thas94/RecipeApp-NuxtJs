@@ -15,17 +15,18 @@
     <ul class="mt-2 text-sm text-gray-700 list-disc list-inside">
         <li v-for="item in order.orderDetailsObj">{{ item.name }} - {{ item.price }}</li>
     </ul>
-    <Dialog v-model:visible="isVisible" modal header='Order Tracking' :style="{ width: '25rem', height: '30rem' }">
-        <span class="block mb-8 text-surface-500">Order #{{ order.orderId }}</span>
-        <div class="flex gap-2">
-            <ul class="space-y-4">
-                <li v-for="(step, index) in trackingStatuses" :key="index" class="flex items-center">
-                    <i class="mr-2 text-green-500 pi pi-check-circle" v-if="step.completed"></i>
-                    <i class="mr-2 text-yellow-500 pi pi-clock" v-else></i>
-                    <span :class="step.completed ? 'text-green-700' : 'text-gray-700'">{{ step.label }}</span>
-                </li>
-            </ul>
-        </div>
+    <Dialog v-model:visible="isVisible" modal header='Order Tracking' :style="{ width: '70rem', height: '20rem' }">
+        <span class="block text-surface-500">Order #{{ order.orderId }}</span>
+        <Timeline :value="trackingStatuses" layout="horizontal">
+            <template #marker="slotProps">
+                <span class="z-10 flex items-center justify-center w-2 h-2 text-white rounded-full shadow-sm"
+                    :style="{ backgroundColor: slotProps.item.completed ? 'green' : 'blue' }">
+                </span>
+            </template>
+            <template #content="slotProps">
+                {{ slotProps.item.label }}
+            </template>
+        </Timeline>
     </Dialog>
 </template>
 
@@ -34,7 +35,7 @@ import { type OrderDetails } from '~/models/orderDetails';
 // const props = defineProps<{ order: OrderDetails }>()
 const statusIndex = ref(0)
 const isVisible = ref(false);
-const {orders} = useOrderStore()
+const { orders } = useOrderStore()
 const attrs = useAttrs()
 const order = computed(() => orders[Number(attrs['data-index'])])
 
@@ -50,8 +51,8 @@ const trackingStatuses = ref([
 
 onMounted(() => {
     statusIndex.value = trackingStatuses.value.findIndex(x => x.label === order.value.orderStatus)
-    for(var i = 0;i < trackingStatuses.value.length;i++){
-        if(i <= statusIndex.value)
+    for (var i = 0; i < trackingStatuses.value.length; i++) {
+        if (i <= statusIndex.value)
             trackingStatuses.value[i].completed = true
     }
 })
