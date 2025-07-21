@@ -26,7 +26,6 @@ onMounted(async () => {
   setTimeout(() => {
     loading.value = false;
   }, 1600);
-  //@ts-expect-error
   await GetOrdersByUserId(data.value?.user.userId)
 });
 
