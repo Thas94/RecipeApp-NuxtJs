@@ -1,31 +1,8 @@
 <template>
   <div>
-    <!-- Menu Toggle Button -->
-    <!-- <button
-      @click="toggleMenu"
-      class="fixed z-50 p-3 text-white transition-colors duration-200 bg-gray-800 rounded-lg shadow-lg top-4 left-4 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      :class="{ 'left-72': isOpen }"
-      aria-label="Toggle menu"
-    >
-      <div class="flex flex-col items-center justify-center w-6 h-6">
-        <span
-          class="block w-5 h-0.5 bg-white transition-all duration-300"
-          :class="{ 'rotate-45 translate-y-1.5': isOpen }"
-        ></span>
-        <span
-          class="block w-5 h-0.5 bg-white mt-1 transition-all duration-300"
-          :class="{ 'opacity-0': isOpen }"
-        ></span>
-        <span
-          class="block w-5 h-0.5 bg-white mt-1 transition-all duration-300"
-          :class="{ '-rotate-45 -translate-y-1.5': isOpen }"
-        ></span>
-      </div>
-    </button> -->
-
     <!-- Overlay -->
     <div
-      v-if="isOpen"
+      v-if="isMenuOpen"
       class="fixed inset-0 z-30 transition-opacity duration-300 bg-black bg-opacity-50"
       @click="closeMenu"
     ></div>
@@ -33,7 +10,7 @@
     <!-- Side Menu -->
     <nav
       class="fixed top-0 left-0 z-40 w-2/5 h-full text-black shadow-2xl bg-gradient-to-b from-slate-200 to-orange-500"
-      :class="{ 'translate-x-0': isOpen, '-translate-x-full': !isOpen }"
+      :class="{ 'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen }"
     >
       <div class="p-6">
         <!-- Menu Header -->
@@ -83,28 +60,14 @@
 </template>
 
 <script setup lang="ts">
-import { NuxtLink } from '#components';
 import { Button } from 'primevue';
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 const { signIn, status, lastRefreshedAt, signOut, data } = useAuth()
 const { showSuccess, showError, showInfo, showWarn, show, clear } = useCustomToast()
-
-const props = defineProps({
-  isMenuOpen: {
-    type: Boolean,
-    required: true,
-  },
-});
-
 const { recipesInCart } = storeToRefs(useCartStore())
 const router = useRouter()
-
-const isOpen = ref(props.isMenuOpen)
+const {isMenuOpen} = storeToRefs(useSideMenuStore())
 const menuRef = ref<HTMLElement | null>(null)
-
-const toggleMenu = () => {
-  isOpen.value = !isOpen.value
-}
 
 const checkout = () => {
   if(status.value == 'authenticated'){
@@ -117,7 +80,7 @@ const checkout = () => {
 }
 
 const closeMenu = () => {
-  isOpen.value = false
+  isMenuOpen.value = false
 }
 
 
@@ -137,7 +100,7 @@ onUnmounted(() => {
 })
 
 // Prevent body scroll when menu is open
-watch(isOpen, (newValue) => {
+watch(isMenuOpen, (newValue) => {
   if (newValue) {
     document.body.style.overflow = 'hidden'
   } else {

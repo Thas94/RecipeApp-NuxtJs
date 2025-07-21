@@ -41,7 +41,6 @@ const { showSuccess, showError, showInfo, showWarn, show, clear } = useCustomToa
 const router = useRouter()
 
 const cartDetails = ref({
-  //@ts-expect-error
   userId: data.value?.user?.userId,
   orderStatusId: 1,
   orderDetails: '',

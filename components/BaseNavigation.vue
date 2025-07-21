@@ -22,7 +22,7 @@
         <div class="cart-total">
           <button
             class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold"
-            @click="showMenu">
+            @click="ToggleMenu">
             <Icon name="mdi:cart-outline" size="20px" />
             <div class="relative">{{ recipesInCart.length }}</div>
           </button>
@@ -112,9 +112,11 @@ const isLoading = ref(false)
 const isLoginVisible = ref(false);
 const isLogoutVisible = ref(false);
 const { recipesInCart } = storeToRefs(useCartStore())
-const isMenuOpen = ref(false)
+//const isMenuOpen = ref(false)
 const isSignedIn = ref(false)
 const popover = ref();
+const {ToggleMenu} = useSideMenuStore()
+const {isMenuOpen} = storeToRefs(useSideMenuStore())
 
 onMounted(() => {
   watchEffect(() => {
@@ -125,10 +127,6 @@ onMounted(() => {
     }
   })
 })
-
-const showMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
-}
 
 async function UserLogin() {
   isLoading.value = true
