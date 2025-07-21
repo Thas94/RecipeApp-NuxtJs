@@ -23,8 +23,9 @@
 </template>
 
 <script setup lang="ts">
-    import { type Recipe } from '~/models/recipeResponse';
-    defineProps<{
-        recipe: Recipe; 
-    }>();
+
+const attrs = useAttrs()
+const { recipeList } = useRecipeStore()
+const recipe = computed(() => recipeList.recipes[Number(attrs['data-index'])])
+    
 </script>
