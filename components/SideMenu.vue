@@ -108,7 +108,7 @@ const toggleMenu = () => {
 
 const checkout = () => {
   if(status.value == 'authenticated'){
-    router.push('checkout')
+    router.push('/checkout')
     closeMenu()
   }
   else{
