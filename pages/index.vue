@@ -56,7 +56,7 @@
                     </template>
                 </DataView>
                 <div class="flex justify-center mt-6" v-if="itemsPerPage <= recipeList.limit && !isSearched">
-                    <Button class="px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800"
+                    <Button class="px-4 py-2 text-white bg-black border-black rounded-md hover:bg-gray-800"
                         @click="loadMoreRecipes">Load
                         More</Button>
                 </div>

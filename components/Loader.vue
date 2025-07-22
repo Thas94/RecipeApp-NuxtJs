@@ -9,7 +9,7 @@
 </script>
 
 <style scoped>
-    .loader {
-        text-align: center;
-    }
+.loader {
+    text-align: center;
+}
 </style>

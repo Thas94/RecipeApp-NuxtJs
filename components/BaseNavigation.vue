@@ -20,9 +20,7 @@
       </ul>
       <div class="flex mini-cart">
         <div class="cart-total">
-          <Button
-            class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold"
-            @click="ToggleMenu">
+          <Button class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold border-dodgeroll-gold" @click="ToggleMenu">
             <Icon name="mdi:cart-outline" size="20px" />
             <div class="relative">{{ recipesInCart.length }}</div>
           </Button>
@@ -84,16 +82,14 @@
     <div class="flex flex-col gap-4">
       <div>
         <ul class="flex flex-col p-0 m-0 list-none">
-          <li 
-            class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border" >
+          <li class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border">
             Account Settings
           </li>
-          <li 
-            class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border" >
+          <li class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border">
             <NuxtLink to="/orders/">Orders</NuxtLink>
           </li>
-          <li 
-            class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border" @click="isLogoutVisible = true">
+          <li class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border"
+            @click="isLogoutVisible = true">
             Sign Out
           </li>
         </ul>
@@ -115,8 +111,8 @@ const { recipesInCart } = storeToRefs(useCartStore())
 //const isMenuOpen = ref(false)
 const isSignedIn = ref(false)
 const popover = ref();
-const {ToggleMenu} = useSideMenuStore()
-const {isMenuOpen} = storeToRefs(useSideMenuStore())
+const { ToggleMenu } = useSideMenuStore()
+const { isMenuOpen } = storeToRefs(useSideMenuStore())
 
 onMounted(() => {
   watchEffect(() => {
@@ -134,7 +130,7 @@ async function UserLogin() {
 }
 
 async function userSignOut() {
-  recipesInCart.value.length = 0 
+  recipesInCart.value.length = 0
   await signOut()
 }
 

@@ -6,7 +6,6 @@
             <div class="flex w-full gap-8 mt-auto mb-4 text-lg font-normal bg-white/80 lg:text-xl">
                 <div class="flex items-center gap-1">
                     <Skeleton width="4rem" height="2rem" />
-
                 </div>
                 <div class="flex items-center gap-1">
                     <Skeleton width="4rem" height="2rem" />
