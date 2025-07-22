@@ -34,19 +34,32 @@
         <section class="container py-20">
             <h2 class="mb-2 text-3xl lg:text-5xl">Discover, Create, Share</h2>
             <p class="mb-8 text-lg lg:text-xl">Check out our most popular recipes!</p>
-            <Loader v-if="loading" />
+            <!-- <Loader v-if="loading" /> -->
+            <div v-if="loading">
+                <DataView :value="[{
+                    id: '1',
+                }]" layout="grid">
+                    <template #grid>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+                            <div v-for="i in 12" :key="i">
+                                <RecipeCardSkeleton />
+                            </div>
+                        </div>
+                    </template>
+                </DataView>
+            </div>
             <div v-else-if="recipeList.recipes.length > 1">
                 <DataView :value="displayedRecipes" layout="grid">
                     <template #grid="slotProps">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
-                            <RecipeCard v-for="(recipe, index) in slotProps.items" :key="index" :data-index="index" /> <!--data-index - fallthrough attribute-->                           
+                            <RecipeCard v-for="(recipe, index) in slotProps.items" :key="index" :data-index="index" />
                         </div>
                     </template>
                 </DataView>
                 <div class="flex justify-center mt-6" v-if="itemsPerPage <= recipeList.limit && !isSearched">
-                    <button class="px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800"
+                    <Button class="px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800"
                         @click="loadMoreRecipes">Load
-                        More</button>
+                        More</Button>
                 </div>
             </div>
             <p v-else class="text-xl">Oops, no recipes found.</p>
@@ -149,6 +162,4 @@ useSeoMeta({
         background-color: red !important;
     }
   } */
-
-
 </style>
