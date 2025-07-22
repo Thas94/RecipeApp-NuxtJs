@@ -20,19 +20,19 @@
       </ul>
       <div class="flex mini-cart">
         <div class="cart-total">
-          <button
+          <Button
             class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold"
             @click="ToggleMenu">
             <Icon name="mdi:cart-outline" size="20px" />
             <div class="relative">{{ recipesInCart.length }}</div>
-          </button>
+          </Button>
         </div>
       </div>
       <div class="flex flex-col p-0 m-0 list-none" v-if="isSignedIn">
         <div class="flex items-center gap-2 px-2 py-3 cursor-pointer rounded-border" @click="openPopover">
-          <img :src="`${(data?.user as any)?.avatar}`" style="width: 32px" />
+          <img :src="`${data?.user.avatar}`" style="width: 32px" />
           <div>
-            <span class="font-medium">{{ (data?.user as any)?.fullName }}</span>
+            <span class="font-medium">{{ data?.user.fullName }}</span>
           </div>
         </div>
       </div>

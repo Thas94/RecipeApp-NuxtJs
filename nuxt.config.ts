@@ -24,24 +24,17 @@ export default defineNuxtConfig({
   image: {
     domains: ['https://dummyjson.com']
   },
-  css: ["@/assets/styles/tailwind.css"],
-  // primevue: {
-  //   options: {
-  //       theme: {
-  //           preset: Nora
-  //       }
-  //   }
-  // },
+  css: ["@/assets/styles/tailwind.css", "primeicons/primeicons.css"],
   primevue: {
     options: {
-      theme: {
-        preset: Aura,
-        options: {
-          darkModeSelector: false
-        }
-      }
+        theme: {
+            preset: Aura,
+            options: {
+                darkModeSelector: false,
+            },
+        },
     },
-  },
+},
   postcss: {
     plugins: {
       "postcss-import": {},

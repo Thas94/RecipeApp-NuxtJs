@@ -86,7 +86,7 @@ onMounted(async () => {
     await getRecipes()
     //@ts-expect-error
     allRecipes.value = recipeList.value?.recipes
-    scrollToTop();
+    //scrollToTop();
 });
 
 const displayedRecipes = computed(() => {
