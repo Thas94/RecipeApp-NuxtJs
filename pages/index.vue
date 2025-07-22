@@ -34,7 +34,6 @@
         <section class="container py-20">
             <h2 class="mb-2 text-3xl lg:text-5xl">Discover, Create, Share</h2>
             <p class="mb-8 text-lg lg:text-xl">Check out our most popular recipes!</p>
-            <!-- <Loader v-if="loading" /> -->
             <div v-if="loading">
                 <DataView :value="[{
                     id: '1',
@@ -69,22 +68,19 @@
 
 <script setup lang="ts">
 
+import {type Recipe, type RecipeResponse} from "../models/recipeResponse";
 const { getRecipes } = useRecipeStore()
 const { recipeList } = storeToRefs(useRecipeStore())
-const itemsPerPage = ref(12);
+const itemsPerPage = ref(12)
 const loading = ref(true)
 const isSearched = ref(false)
-const allRecipes = ref(null)
-const selectedRecipe = ref("");
-const filteredRecipe = ref([{}]);
+const allRecipes = ref([{}]) as Ref<Recipe[]>
+const selectedRecipe = ref({}) as Ref<Recipe>
+const filteredRecipe = ref([{}])
 
 onMounted(async () => {
-    setTimeout(() => {
-        loading.value = false;
-    }, 1600);
 
-    await getRecipes()
-    //@ts-expect-error
+    await getRecipes().then(() => {loading.value = false;})
     allRecipes.value = recipeList.value?.recipes
     //scrollToTop();
 });
@@ -92,7 +88,6 @@ onMounted(async () => {
 const displayedRecipes = computed(() => {
     const endIndex = itemsPerPage.value;
     return Array.isArray(allRecipes.value)
-        //@ts-expect-error
         ? allRecipes.value.slice(0, endIndex)
         : [];
 });
@@ -105,14 +100,11 @@ const loadMoreRecipes = () => {
     itemsPerPage.value = itemsPerPage.value * 2;
 }
 
-//@ts-expect-error
-const searchRecipe = (event) => {
+const searchRecipe = (event: any) => {
     setTimeout(() => {
         if (!event.query.trim().length) {
-            //@ts-expect-error
             filteredRecipe.value = [...allRecipes.value];
         } else {
-            //@ts-expect-error
             filteredRecipe.value = allRecipes.value?.filter((x) => {
                 return x.name.toLowerCase().includes(event.query.toLowerCase());
             });
@@ -122,14 +114,12 @@ const searchRecipe = (event) => {
 
 const submitSearch = () => {
     isSearched.value = true
-    //@ts-expect-error
-    allRecipes.value = allRecipes.value.filter((x) => x.name.toLowerCase().includes(selectedRecipe.value.name.toLowerCase()))
+    allRecipes.value = allRecipes.value.filter((x) => x.id === selectedRecipe.value.id)
 }
 
 const clearSearch = () => {
     isSearched.value = false
-    selectedRecipe.value = ""
-    //@ts-expect-error
+    selectedRecipe.value = {} as Recipe
     allRecipes.value = recipeList.value?.recipes
 }
 
@@ -138,28 +128,8 @@ useSeoMeta({
     description: "Recipes for you to cook!",
     ogTitle: "Nuxtcipes",
     ogDescription: "Recipes for you to cook!",
-    ogImage: "/nuxt-course-hero.png",
-    ogUrl: `http:localhost:3001`,
-    twitterTitle: "Nuxtcipes",
-    twitterDescription: "Recipes for you to cook!",
-    twitterImage: "/nuxt-course-hero.png",
-    twitterCard: "summary",
 });
 </script>
 
 <style scoped>
-/* :root {
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark) {
-  :root{
-    color-scheme:light !important;
-  }
-} */
-
-/* @media (prefers-color-scheme:light) {
-    .p-dataview-content{
-        background-color: red !important;
-    }
-  } */
 </style>
