@@ -39,7 +39,7 @@
                     id: '1',
                 }]" layout="grid">
                     <template #grid>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+                        <div class="grid lg:grid-cols-3 gap-x-4 gap-y-8">
                             <div v-for="i in 12" :key="i">
                                 <RecipeCardSkeleton />
                             </div>
@@ -50,7 +50,7 @@
             <div v-else-if="recipeList.recipes.length > 1">
                 <DataView :value="displayedRecipes" layout="grid">
                     <template #grid="slotProps">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+                        <div class="grid lg:grid-cols-3 gap-x-4 gap-y-8">
                             <RecipeCard v-for="(recipe, index) in slotProps.items" :key="index" :data-index="index" />
                         </div>
                     </template>

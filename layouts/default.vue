@@ -1,6 +1,7 @@
 <template>
     <div>
         <Toast />
+        <SessionWarning />
         <BaseNavigation />
         <slot /> 
         <!-- can use nuxt page -->
@@ -8,5 +9,6 @@
 </template>
 
 <script setup lang="ts">
-
+useSessionTracking()
+useSessionTimeout()
 </script>

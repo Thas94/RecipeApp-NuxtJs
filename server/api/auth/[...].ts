@@ -19,14 +19,16 @@ export default NuxtAuthHandler({
         // @ts-expect-error
         async session({session, token}){
           // Fetch data OR add previous data from the JWT callback.
-          const additionalUserData = <any>token
+          const additionalUserData = token
+
           return {
             ...session,
             user: {
               userId: additionalUserData.userId,
               fullName: additionalUserData.fullName,
               emailAddress: additionalUserData.emailAddress,
-              avatar: additionalUserData.avatar
+              avatar: additionalUserData.avatar,
+              sessionExpiryDate: additionalUserData.sessionExpiryDate
             }
           }
         }
