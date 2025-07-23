@@ -1,7 +1,7 @@
 import { useSessionStore } from '@/stores/sessionStore'
 import { useRouter } from 'vue-router'
 
-export const useSessionTimeout = () => {
+export const useValidateSession = () => {
     const { sessionExpireDate, showSessionDialog, isUserActive } = storeToRefs(useSessionStore())
     const { data, status, getSession, signOut, signIn, refresh } = useAuth()
 

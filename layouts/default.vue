@@ -10,5 +10,5 @@
 
 <script setup lang="ts">
 useSessionTracking()
-useSessionTimeout()
+useValidateSession()
 </script>
