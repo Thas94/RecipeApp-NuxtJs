@@ -4,9 +4,10 @@ import { useRouter } from 'vue-router'
 export const useValidateSession = () => {
     const { sessionExpireDate, showSessionDialog, isUserActive } = storeToRefs(useSessionStore())
     const { data, status, getSession, signOut, signIn, refresh } = useAuth()
+    let timer
 
     onMounted(async () => {
-        setInterval(() => {
+        timer = setInterval(() => {
             const nowDate = new Date()
             //@ts-expect-error
             const sessionDate = new Date(data.value?.user.sessionExpiryDate)
@@ -27,5 +28,5 @@ export const useValidateSession = () => {
         }, 10 * 1000) // check every 10 sec
     })
 
-    //onUnmounted(() => )
+    clearInterval(timer)
 }

@@ -9,12 +9,12 @@
         <li class="cursor-pointer" v-if="!isSignedIn" @click="isLoginVisible = true">
           Login
         </li>
-        <!-- <li>
-          <NuxtLink to="/about">About</NuxtLink>
+        <li>
+          <NuxtLink to="/tailwind-test">Tailwind</NuxtLink>
         </li>
         <li>
           <NuxtLink to="/primeview-test">Primeview</NuxtLink>
-        </li> -->
+        </li>
         <li>
         </li>
       </ul>

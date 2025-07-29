@@ -2,14 +2,17 @@
 <template>
     <Dialog 
       v-model:visible="showSessionDialog" 
-      header="Inactivity Detected" 
+      header="Are you still active?" 
     >
+    <!-- <PrimeviewTest /> -->
       <p>You’ve been inactive for a while. You’ll be signed out soon unless you continue.</p>
-      <Button label="Stay Logged In" @click="stayLoggedIn" />
+      <!-- <Button label="Stay Logged In" @click="stayLoggedIn" /> -->
     </Dialog>
   </template>
   
   <script setup>
+import PrimeviewTest from '~/pages/primeview-test.vue';
+
   const { updateActivity} = useSessionStore()
   const { showSessionDialog } = storeToRefs(useSessionStore())
   function stayLoggedIn() {
