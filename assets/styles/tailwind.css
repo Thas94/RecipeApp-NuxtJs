@@ -7,7 +7,7 @@
 
  */
 
- @layer tailwind-base, primevue, tailwind-utilities;
+ /* @layer tailwind-base, primevue, tailwind-utilities;
 
 @layer tailwind-base {
     @tailwind base;
@@ -16,4 +16,8 @@
 @layer tailwind-utilities {
     @tailwind components;
     @tailwind utilities;
-}
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
