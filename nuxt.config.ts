@@ -27,14 +27,14 @@ export default defineNuxtConfig({
   css: ["@/assets/styles/tailwind.css", "primeicons/primeicons.css"],
   primevue: {
     options: {
-        theme: {
-            preset: Aura,
-            options: {
-                darkModeSelector: false,
-            },
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false,
         },
+      },
     },
-},
+  },
   postcss: {
     plugins: {
       "postcss-import": {},
@@ -45,5 +45,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     recipeApiUrl: '',
     apiUrl: '',
+  },
+  auth: {
+    baseURL: process.env.AUTH_ORIGIN,
+    provider: {
+      type: 'authjs'
+    }
   },
 })

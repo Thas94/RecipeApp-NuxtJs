@@ -7,7 +7,7 @@
                         class="text-xl font-bold leading-tight tracking-tight  md:text-2xl dark:text-gray-900 text-white">
                         Login
                     </h1>
-                    <form @submit.prevent="UserLogin" class="space-y-4 md:space-y-6" action="#">
+                    <form @submit.prevent="handleSignIn" class="space-y-4 md:space-y-6" action="#">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                                 email</label>
@@ -24,7 +24,7 @@
                         </div>
                         <button v-if="!isLoading" type="submit"
                             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{
-                                !isLoading ? "Login": "Logging In..." }}</button>
+                                !isLoading ? "Login" : "Logging In..." }}</button>
                         <button v-if="isLoading" disabled type="button"
                             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                             <svg aria-hidden="true" role="status" class="inline w-4 h-4 text-white me-3 animate-spin"
@@ -50,34 +50,49 @@
 
 <script setup lang="ts">
 definePageMeta({
-    layout: false
+    layout: false,
+    middleware: 'guest'
 })
 const form = ref({
     email: '',
     password: ''
 })
-const router = useRouter()
-const { signIn, status, lastRefreshedAt } = useAuth()
+const { signIn } = useAuth()
 const isLoading = ref(false)
-const { loading } = useAuthState()
-const { data } = await useFetch('/api/userSession')
-const errorMesg = ref(null)
-const session = ref(<any>data)
-// //@ts-expect-error
-// errorMesg.value = data?.user?.errorMessage
+const errorMesg = ref('')
 
-async function UserLogin() {
+const handleSignIn = async () => {
     isLoading.value = true
-    await signIn('credentials', form.value)
-}
+    errorMesg.value = ''
 
-onMounted(() => {
-    watchEffect(() => {
-        if (status.value == 'authenticated') {
-            isLoading.value = false
-            navigateTo('/')
+    try {
+        const result = await signIn('credentials', {
+            email: form.value.email,
+            password: form.value.password,
+            redirect: false
+        })
+
+        if (result?.error) {
+            errorMesg.value = 'Invalid credentials. Please try again.'
+        } else {
+            if (result?.status === 200) {
+                const data = await $fetch('/api/userSession')
+                //@ts-expect-error
+                switch (data.user?.roleName) {
+                    case 'Admin':
+                        await navigateTo('/admin')
+                        break;
+                    case 'RegularUser':
+                        await navigateTo('/')
+                        break;
+                }
+            }
         }
-    })
-})
+    } catch (err) {
+        errorMesg.value = 'An error occurred. Please try again.'
+    } finally {
+        isLoading.value = false
+    }
+}
 
 </script>

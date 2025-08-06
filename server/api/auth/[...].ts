@@ -6,7 +6,8 @@ const config = useRuntimeConfig()
 
 export default NuxtAuthHandler({
   pages: {
-    signIn: 'auth/login',
+    signIn: '/auth/login',
+    error: '/auth/error',
   },
   callbacks: {
     // @ts-expect-error
@@ -42,17 +43,29 @@ export default NuxtAuthHandler({
     CredentialsProvider.default({
       name: 'Credentials',
       async authorize(credentials: any) {
-        const res = await fetch(`${config.apiUrl}/User/Login?email=${credentials.email}&password=${credentials.password}`, {
-          method: 'GET',
-          headers: { "Content-Type": "application/json" }
-        })
+        try{
+          if (!credentials?.email || !credentials?.password) {
+            throw new Error('Email and password are required')
+          }
 
-        const user = await res.json()
-
-        if (user.userId > 0)
-          return user
-        else
+          const res = await fetch(`${config.apiUrl}/User/Login?email=${credentials.email}&password=${credentials.password}`, {
+            method: 'GET',
+            headers: { "Content-Type": "application/json" }
+          })
+  
+          const user = await res.json()
+          if (user.userId > 0)
+          {
+            return user
+          }
+          else
+          {
+            throw new Error('Invalid credentials')
+          }
+        }
+        catch(error){
           return null
+        }
       }
     }),
   ]
