@@ -103,7 +103,9 @@
 </template>
 
 <script setup lang="ts">
-
+definePageMeta({
+    middleware: ["auth"]
+})
 import { type Recipe } from '~/models/recipeResponse';
 const { id } = useRoute().params;
 const loading = ref(true);

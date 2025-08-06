@@ -68,7 +68,10 @@
 
 <script setup lang="ts">
 
-import {type Recipe, type RecipeResponse} from "../models/recipeResponse";
+definePageMeta({
+    middleware: ["auth"]
+})
+import { type Recipe, type RecipeResponse } from "../models/recipeResponse";
 const { getRecipes } = useRecipeStore()
 const { recipeList } = storeToRefs(useRecipeStore())
 const itemsPerPage = ref(12)
@@ -80,7 +83,7 @@ const filteredRecipe = ref([{}])
 
 onMounted(async () => {
 
-    await getRecipes().then(() => {loading.value = false;})
+    await getRecipes().then(() => { loading.value = false; })
     allRecipes.value = recipeList.value?.recipes
     //scrollToTop();
 });
@@ -129,7 +132,8 @@ useSeoMeta({
     ogTitle: "Nuxtcipes",
     ogDescription: "Recipes for you to cook!",
 });
+
+
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
