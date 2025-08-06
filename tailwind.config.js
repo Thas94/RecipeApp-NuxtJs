@@ -17,6 +17,7 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-primeui')]
+  plugins: [require('tailwindcss-primeui')],
+  // darkMode: 'selector'
 }
 

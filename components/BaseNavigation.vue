@@ -2,10 +2,10 @@
   <header class="py-4 border-b">
     <nav class="container flex items-center">
       <NuxtLink to="/" class="flex items-center gap-1">
-        <NuxtImg width="56px" densities="1px" format="webp" src="/icon-green.png" alt="" />
-        <span class="text-3xl font-bold">Nuxt Recipes</span>
+        <NuxtImg class="w-[56px] max-md:w-10" densities="1px" format="webp" src="/icon-green.png" alt="" />
+        <span class="text-3xl font-bold max-md:text-xl">Nuxt Recipes</span>
       </NuxtLink>
-      <ul class="flex gap-6 ml-auto text-xl font-bold capitalize">
+      <ul class="flex gap-6 ml-auto text-xl font-bold capitalize max-md:text-[15px] max-md:-space-x-2">
         <li class="cursor-pointer" v-if="!isSignedIn" @click="isLoginVisible = true">
           Login
         </li>
@@ -20,7 +20,7 @@
       </ul>
       <div class="flex mini-cart">
         <div class="cart-total">
-          <Button class="flex p-2 text-xl text-center text-black rounded-md bg-dodgeroll-gold border-dodgeroll-gold" @click="ToggleMenu">
+          <Button class="flex p-1 text-xl text-center text-black rounded-md bg-dodgeroll-gold border-dodgeroll-gold max-md:w-11 max-md:h-10 max-md:text-[15px]" @click="ToggleMenu">
             <Icon name="mdi:cart-outline" size="20px" />
             <div class="relative">{{ recipesInCart.length }}</div>
           </Button>
@@ -37,7 +37,7 @@
     </nav>
   </header>
   <div v-if="isMenuOpen">
-    <SideMenu :isMenuOpen="isMenuOpen" />
+    <SideMenu />
   </div>
   <Dialog v-model:visible="isLoginVisible" modal header='Welcome Back' :style="{ width: '25rem' }">
     <form @submit.prevent="UserLogin" class="space-y-4 md:space-y-6" action="#">
@@ -142,7 +142,7 @@ const openPopover = (event) => {
 </script>
 
 <style>
-.mini-cart {
+/* .mini-cart {
   position: relative;
 }
 
@@ -151,5 +151,5 @@ const openPopover = (event) => {
   justify-content: center;
   overflow: hidden;
   position: relative;
-}
+} */
 </style>

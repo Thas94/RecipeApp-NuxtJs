@@ -31,7 +31,7 @@
                 </div>
             </div>
         </section>
-        <section class="container py-20">
+        <section class="container py-20 bg-slate-400 dark:bg-white">
             <h2 class="mb-2 text-3xl lg:text-5xl">Discover, Create, Share</h2>
             <p class="mb-8 text-lg lg:text-xl">Check out our most popular recipes!</p>
             <div v-if="loading">
@@ -39,7 +39,7 @@
                     id: '1',
                 }]" layout="grid">
                     <template #grid>
-                        <div class="grid lg:grid-cols-3 gap-x-4 gap-y-8">
+                        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
                             <div v-for="i in 12" :key="i">
                                 <RecipeCardSkeleton />
                             </div>
@@ -50,7 +50,7 @@
             <div v-else-if="recipeList.recipes.length > 1">
                 <DataView :value="displayedRecipes" layout="grid">
                     <template #grid="slotProps">
-                        <div class="grid lg:grid-cols-3 gap-x-4 gap-y-8">
+                        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
                             <RecipeCard v-for="(recipe, index) in slotProps.items" :key="index" :data-index="index" />
                         </div>
                     </template>
