@@ -28,7 +28,8 @@ export default NuxtAuthHandler({
               fullName: additionalUserData.fullName,
               emailAddress: additionalUserData.emailAddress,
               avatar: additionalUserData.avatar,
-              sessionExpiryDate: additionalUserData.sessionExpiryDate
+              sessionExpiryDate: additionalUserData.sessionExpiryDate,
+              roleName: additionalUserData.roleName
             }
           }
         }

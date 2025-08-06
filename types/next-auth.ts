@@ -12,6 +12,7 @@ declare module 'next-auth' {
       emailAddress: string
       avatar: string
       sessionExpiryDate: Date
+      roleName: string
     }
   }
 }

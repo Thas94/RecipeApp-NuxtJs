@@ -3,7 +3,7 @@
         <Toast />
         <SessionWarning />
         <BaseNavigation />
-        <slot /> 
+        <NuxtPage /> 
         <!-- can use nuxt page -->
     </div>
 </template>

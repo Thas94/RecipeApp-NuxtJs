@@ -19,8 +19,8 @@ export const useValidateSession = () => {
             else if (!isUserActive.value) {
                 const diffMinutes: number = Math.abs(sessionDate.getTime() - nowDate.getTime()) / (1000 * 60);
                 if(diffMinutes >= 1){ //idle for 1 minute
-                    showSessionDialog.value = true
-                    setInterval(() => { signOut() }, 10 * 6000) //sign out after 1 minute
+                    //showSessionDialog.value = true
+                    //setInterval(() => { signOut() }, 10 * 6000) //sign out after 1 minute
                 }
             }
             isUserActive.value = false
