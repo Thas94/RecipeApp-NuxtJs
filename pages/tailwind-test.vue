@@ -5,9 +5,9 @@
     <div>
       <div class="p-4 text-xl font-bold">MyApp</div>
       <nav class="px-4 space-y-2">
-        <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700">Dashboard</a>
-        <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700">Profile</a>
-        <a href="#" class="block py-2 px-3 rounded hover:bg-gray-700">Settings</a>
+        <NuxtLink to="/admin/dashboard" class="block py-2 px-3 rounded hover:bg-gray-700">Dashboard</NuxtLink>
+        <NuxtLink to="/admin/inbox" class="block py-2 px-3 rounded hover:bg-gray-700">Inbox</NuxtLink>
+        <NuxtLink to="/admin/products" class="block py-2 px-3 rounded hover:bg-gray-700">Products</NuxtLink>
       </nav>
     </div>
     <!-- Footer -->
@@ -19,7 +19,7 @@
   <!-- Main Content -->
   <main class="flex-1 bg-gray-100 p-6">
     <h1 class="text-2xl font-semibold mb-4">Welcome to MyApp</h1>
-    <p>This is your main content area. Resize the window to see the responsive sidebar in action.</p>
+    <NuxtPage />
   </main>
 </div>
 
