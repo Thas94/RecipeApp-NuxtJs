@@ -51,7 +51,6 @@
 <script setup lang="ts">
 definePageMeta({
     layout: false,
-    middleware: 'guest'
 })
 const form = ref({
     email: '',
@@ -77,6 +76,7 @@ const handleSignIn = async () => {
         } else {
             if (result?.status === 200) {
                 const data = await $fetch('/api/userSession')
+                debugger
                 //@ts-expect-error
                 switch (data.user?.roleName) {
                     case 'Admin':

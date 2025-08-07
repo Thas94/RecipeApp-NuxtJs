@@ -69,7 +69,7 @@
 <script setup lang="ts">
 
 definePageMeta({
-    middleware: ["auth"]
+    middleware: ["user","auth"]
 })
 import { type Recipe, type RecipeResponse } from "../models/recipeResponse";
 const { getRecipes } = useRecipeStore()

@@ -4,7 +4,6 @@
         <SessionWarning />
         <BaseNavigation />
         <NuxtPage /> 
-        <!-- can use nuxt page -->
     </div>
 </template>
 

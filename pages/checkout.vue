@@ -57,7 +57,7 @@ const bill = ref({
   })
 
 definePageMeta({
-  middleware: ["auth"]
+  middleware: ["auth", "user"]
 })
 const result = ref(false)
 const { recipesInCart } = storeToRefs(useCartStore())

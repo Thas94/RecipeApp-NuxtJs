@@ -104,7 +104,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-    middleware: ["auth"]
+    middleware: ["auth", "user"]
 })
 import { type Recipe } from '~/models/recipeResponse';
 const { id } = useRoute().params;

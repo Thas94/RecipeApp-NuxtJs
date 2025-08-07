@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-  middleware: ["auth"]
+  middleware: ["auth", "user"]
 })
 const { signIn, status, lastRefreshedAt, signOut, data } = useAuth()
 const { GetOrdersByUserId } = useOrderStore()
