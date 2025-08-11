@@ -8,7 +8,7 @@
   <script setup>
   definePageMeta({
     layout: 'admin',
-    middleware: ['auth', 'admin']
+    middleware: ['admin']
   })
   const {signOut} = useAuth()
   </script>
