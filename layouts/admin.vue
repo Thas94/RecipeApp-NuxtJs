@@ -6,8 +6,8 @@
         <div class="p-4 text-xl font-bold py-[30px] bg-orange-500">Nuxt Recipes</div>
         <nav class="px-4 space-y-2 py-[30px]">
           <ul>
-            <li v-for="(m, i) in menuList" @click="NavigateToPage(m)"
-            :to="m.to" class="block py-2 px-3 rounded hover:bg-orange-200 cursor-pointer"
+            <li v-for="(m, i) in menuList" @click="NavigateToPage(m)" :to="m.to"
+              class="block py-2 px-3 rounded hover:bg-orange-200 cursor-pointer"
               :class="m.active ? 'bg-orange-500' : ''">
               <span :class="m.icon"></span>
               {{ m.label }}
@@ -20,6 +20,19 @@
           © 2025 MyApp. All rights reserved.
         </div> -->
     </aside>
+    <div class="md:hidden justify-between bg-orange-300 text-white w-15">
+      <div class="p-4 text-xl font-bold py-[30px] bg-orange-500">
+        <span class="pi pi-bars ml-2"></span>
+      </div>
+      <nav class="px-4 space-y-2 py-[30px]">
+        <ul>
+          <li v-for="(m, i) in menuList" @click="NavigateToPage(m)" :to="m.to"
+            class="block py-2 px-3 rounded hover:bg-orange-200 cursor-pointer" :class="m.active ? 'bg-orange-500' : ''">
+            <span :class="m.icon"></span>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
     <!-- Main Content -->
     <main class="flex-1 bg-gray-100">
@@ -32,9 +45,9 @@
 
 <script setup lang="ts">
 import { AdminMenuService } from '../service/menu-service/admin/AdminMenuService'
-const {GetMenuList, NavigateToPage} = useAdminMenuStore()
-const {menuList} = storeToRefs(useAdminMenuStore())
-import { type AdminMenuModel } from '~/types/admin/adminMenuModel' 
+const { GetMenuList, NavigateToPage } = useAdminMenuStore()
+const { menuList } = storeToRefs(useAdminMenuStore())
+import { type AdminMenuModel } from '~/types/admin/adminMenuModel'
 
 onMounted(() => {
   GetMenuList()

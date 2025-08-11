@@ -3,8 +3,8 @@
     <nav class=" px-2 py-3" >
       <div class="flex mr-10 cursor-pointer">
         <div class="flex ml-auto items-center"  @click="openPopover">
-          <span class="font-medium">{{ data?.user.fullName }}</span>
-          <img class="rounded-full" :src="`${data?.user.avatar}`" style="width: 32px"/>
+          <span class="font-medium text-lg max-sm:text-sm max-md:text-sm">{{ data?.user.fullName }}</span>
+          <img class="rounded-full w-[32px] max-sm:w-[25px] max-md:w-[25]" :src="`${data?.user.avatar}`"/>
         </div>
       </div>
     </nav>
