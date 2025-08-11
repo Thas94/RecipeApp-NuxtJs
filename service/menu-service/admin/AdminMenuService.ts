@@ -5,17 +5,20 @@ export const AdminMenuService ={
         const menu: AdminMenuModel[] = [{
             label: "Dashboard",
             to: "/admin/dashboard",
-            active: true
+            active: true,
+            icon: "pi pi-home"
         },
         {
             label: "Inbox",
             to: "/admin/Inbox",
-            active: false
+            active: false,
+            icon: "pi pi-inbox"
         }
             , {
             label: "Products",
             to: "/admin/Products",
-            active: false
+            active: false,
+            icon: "pi pi-barcode"
         },
         // {
         //     label: "Projects",

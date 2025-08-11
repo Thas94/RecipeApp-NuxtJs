@@ -9,6 +9,7 @@
             <li v-for="(m, i) in menuList" @click="NavigateToPage(m)"
             :to="m.to" class="block py-2 px-3 rounded hover:bg-orange-200 cursor-pointer"
               :class="m.active ? 'bg-orange-500' : ''">
+              <span :class="m.icon"></span>
               {{ m.label }}
             </li>
           </ul>
