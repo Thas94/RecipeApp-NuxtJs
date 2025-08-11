@@ -1,5 +1,5 @@
 <template>
-  <header class="py-4 border-b">
+  <header class="py-4 border-b max-sm:max-md:py-[19px]">
     <nav class=" px-2 py-3" >
       <div class="flex mr-10 cursor-pointer">
         <div class="flex ml-auto items-center"  @click="openPopover">
