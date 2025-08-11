@@ -1,10 +1,10 @@
 <template>
   <header class="py-4 border-b">
-    <nav class=" px-2 py-3" v-if="isSignedIn" @click="openPopover">
+    <nav class=" px-2 py-3" v-if="isSignedIn" >
       <div class="flex mr-10 cursor-pointer">
-        <div class="flex ml-auto items-center">
+        <div class="flex ml-auto items-center"  @click="openPopover">
           <span class="font-medium">{{ data?.user.fullName }}</span>
-          <img class="rounded-full" :src="`${data?.user.avatar}`" style="width: 32px" />
+          <img class="rounded-full" :src="`${data?.user.avatar}`" style="width: 32px"/>
         </div>
       </div>
     </nav>
