@@ -21,3 +21,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/*========================Admin=====================================*/
+/* @layer components {
+  @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      .nav-header {
+        @apply mt-[6px]
+      }
+
+      .admin-username {
+        @apply text-sm
+      }
+
+    }
+  }
+
+  @media (max-width: 640px) {
+    .admin-userimage {
+      @apply w-[25px]
+    }
+  }
+
+  @media (max-width: 768px) {
+    .admin-userimage {
+      @apply w-[25px]
+    }
+  }
+} */

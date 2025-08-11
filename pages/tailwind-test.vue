@@ -1,20 +1,26 @@
 <template>
-  <ul class="space-y-2">
-    <li>
-      <NuxtLink to="/admin/dashboard"
-        class="block px-4 py-2 rounded"
-        :class="$route.path === '/admin/dashboard' ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-gray-100'">
-        Dashboard
-      </NuxtLink>
-    </li>
-    <li>
-      <NuxtLink to="/admin/inbox"
-        class="block px-4 py-2 rounded"
-        :class="$route.path === '/admin/inbox' ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-gray-100'">
-        Settings
-      </NuxtLink>
-    </li>
-  </ul>
+<div class="flex items-end space-x-4 h-64 p-4 bg-gray-100">
+  <!-- Bar 1 -->
+  <div class="flex flex-col items-center">
+    <div class="bg-blue-300 w-8 h-32 rounded-t"></div>
+  </div>
+
+  <!-- Bar 2 -->
+  <div class="flex flex-col items-center">
+    <div class="bg-green-500 w-8 h-48 rounded-t"></div>
+  </div>
+
+  <!-- Bar 3 -->
+  <div class="flex flex-col items-center">
+    <div class="bg-red-500 w-8 h-24 rounded-t"></div>
+  </div>
+
+  <!-- Bar 4 -->
+  <div class="flex flex-col items-center">
+    <div class="bg-purple-500 w-8 h-40 rounded-t"></div>
+  </div>
+</div>
+
 </template>
 
 <script setup lang="ts">
