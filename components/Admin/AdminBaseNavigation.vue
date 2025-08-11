@@ -1,37 +1,10 @@
 <template>
   <header class="py-4 border-b">
-    <nav class="container flex items-center">
-      <NuxtLink to="/" class="flex items-center gap-1">
-        <NuxtImg class="w-[56px] max-md:w-10" densities="1px" format="webp" src="/icon-green.png" alt="" />
-        <span class="text-3xl font-bold max-md:text-xl">Nuxt Recipes</span>
-      </NuxtLink>
-      <ul class="flex gap-6 ml-auto text-xl font-bold capitalize max-md:text-[15px] max-md:-space-x-2">
-        <li class="cursor-pointer" v-if="!isSignedIn" @click="isLoginVisible = true">
-          Login
-        </li>
-        <li>
-          <NuxtLink to="/tailwind-test">Tailwind</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/primeview-test">Primeview</NuxtLink>
-        </li>
-        <li>
-        </li>
-      </ul>
-      <div class="flex mini-cart">
-        <div class="cart-total">
-          <Button class="flex p-1 text-xl text-center text-black rounded-md bg-dodgeroll-gold border-dodgeroll-gold max-md:w-11 max-md:h-10 max-md:text-[15px]" @click="ToggleMenu">
-            <Icon name="mdi:cart-outline" size="20px" />
-            <div class="relative">{{ recipesInCart.length }}</div>
-          </Button>
-        </div>
-      </div>
-      <div class="flex flex-col p-0 m-0 list-none" v-if="isSignedIn">
-        <div class="flex items-center gap-2 px-2 py-3 cursor-pointer rounded-border" @click="openPopover">
-          <img :src="`${data?.user.avatar}`" style="width: 32px" />
-          <div>
-            <span class="font-medium">{{ data?.user.fullName }}</span>
-          </div>
+    <nav class=" px-2 py-3" v-if="isSignedIn" @click="openPopover">
+      <div class="flex mr-10 cursor-pointer">
+        <div class="flex ml-auto items-center">
+          <span class="font-medium">{{ data?.user.fullName }}</span>
+          <img class="rounded-full" :src="`${data?.user.avatar}`" style="width: 32px" />
         </div>
       </div>
     </nav>
@@ -78,7 +51,7 @@
       <Button type="button" label="Yes" @click="userSignOut"></Button>
     </div>
   </Dialog>
-  <Popover ref="popover">
+  <Popover ref="popover" :target="triggerEl">
     <div class="flex flex-col gap-4">
       <div>
         <ul class="flex flex-col p-0 m-0 list-none">
@@ -111,6 +84,7 @@ const { recipesInCart } = storeToRefs(useCartStore())
 //const isMenuOpen = ref(false)
 const isSignedIn = ref(false)
 const popover = ref();
+const triggerEl = ref(null)
 const { ToggleMenu } = useSideMenuStore()
 const { isMenuOpen } = storeToRefs(useSideMenuStore())
 
@@ -136,6 +110,7 @@ async function userSignOut() {
 
 //@ts-expect-error
 const openPopover = (event) => {
+  triggerEl.value = popover.value.$el.previousElementSibling
   popover.value.toggle(event);
 }
 
