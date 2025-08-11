@@ -1,15 +1,19 @@
 <template>
-    <div>
-      <h1 class="text-2xl font-bold">Admin Dashboard</h1>
-      <button @click="signOut">Log out</button>
-    </div>
-  </template>
+</template>
   
-  <script setup>
+  <script setup lang="ts">
   definePageMeta({
     layout: 'admin',
     middleware: ['admin']
   })
-  const {signOut} = useAuth()
+  const {NavigateToPage} = useAdminMenuStore()
+
+  onMounted(() => {
+    NavigateToPage({
+            label: "Dashboard",
+            to: "/admin/dashboard",
+            active: true
+        })
+  })
   </script>
   
