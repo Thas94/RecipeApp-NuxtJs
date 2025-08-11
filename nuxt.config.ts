@@ -27,8 +27,13 @@ export default defineNuxtConfig({
   css: ["@/assets/styles/tailwind.css", "primeicons/primeicons.css"],
   primevue: {
     options: {
-      theme: 'none'
-    }
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false,
+        },
+      },
+    },
   },
   postcss: {
     plugins: {
