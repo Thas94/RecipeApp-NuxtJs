@@ -1,11 +1,11 @@
 <template>
     <section class="bg-gray-50 dark:bg-dodgeroll-gold">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <div class="w-full bg-gray-800 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white ">
-                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen max-sm:h-screen">
+            <div class="w-full bg-gray-800 rounded-lg shadow dark:border sm:max-w-md max-sm:w-[20rem] dark:bg-white ">
+                <div class="p-6 ">
                     <h1
                         class="text-xl font-bold leading-tight tracking-tight  md:text-2xl dark:text-gray-900 text-white">
-                        Login
+                        Welcome back
                     </h1>
                     <form @submit.prevent="handleSignIn" class="space-y-4 md:space-y-6" action="#">
                         <div>
