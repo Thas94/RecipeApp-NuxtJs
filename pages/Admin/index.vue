@@ -12,7 +12,8 @@
     NavigateToPage({
             label: "Dashboard",
             to: "/admin/dashboard",
-            active: true
+            active: true,
+            icon: 'pi pi-home'
         })
   })
   </script>

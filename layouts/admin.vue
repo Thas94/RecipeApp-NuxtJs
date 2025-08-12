@@ -37,17 +37,15 @@
     <!-- Main Content -->
     <main class="flex-1 bg-gray-100">
       <AdminBaseNavigation />
-      <NuxtPage class="py-10 w-3/4 bg-black ml-48"/>
+      <NuxtPage class="py-10 w-[66%] bg-black ml-52"/>
     </main>
   </div>
 
 </template>
 
 <script setup lang="ts">
-import { AdminMenuService } from '../service/menu-service/admin/AdminMenuService'
 const { GetMenuList, NavigateToPage } = useAdminMenuStore()
 const { menuList } = storeToRefs(useAdminMenuStore())
-import { type AdminMenuModel } from '~/types/admin/adminMenuModel'
 
 onMounted(() => {
   GetMenuList()
