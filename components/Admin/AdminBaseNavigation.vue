@@ -2,7 +2,7 @@
   <header class="py-4 border-b max-sm:max-md:py-[19px]">
     <nav class=" px-2 py-3" >
       <div class="flex mr-10 cursor-pointer">
-        <div class="flex ml-auto items-center"  @click="openPopover">
+        <div class="flex ml-auto items-center max-sm:max-md:ml-72"  @click="openPopover">
           <span class="font-medium text-lg max-sm:text-sm max-md:text-sm">{{ data?.user.fullName }}</span>
           <img class="rounded-full w-[32px] max-sm:w-[25px] max-md:w-[25]" :src="`${data?.user.avatar}`"/>
         </div>
@@ -20,7 +20,7 @@
   <Popover ref="popover">
     <div class="flex flex-col gap-4">
       <div>
-        <ul class="flex flex-col p-0 m-0 list-none">
+        <ul class="flex flex-col p-0 m-0 list-none max-sm:text-sm max-md:text-sm">
           <li class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border">
             Account Settings
           </li>

@@ -22,6 +22,47 @@
 @tailwind utilities;
 
 /*========================Admin=====================================*/
+
+
+
+/* Apply smaller text on screens ≤ 768px (max-md) */
+@media (max-width: 640px) {
+  .side-nav {
+    @apply hidden
+  }
+
+  .nav-header {
+    @apply py-[19px]
+  }
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    @apply hidden
+  }
+
+}
+
+@media (max-width: 1024px) {
+  
+}
+
+
+@media (min-width: 768px) {
+  .header-text {
+    @apply text-sm
+  }
+
+}
+
+
+/* Apply larger text on screens ≥ 1024px (lg) */
+@media (min-width: 1024px) {
+  .header-text {
+    @apply text-xl
+  }
+}
+
 /* @layer components {
   @media (max-width: 640px) {
     @media (max-width: 768px) {
