@@ -9,8 +9,8 @@
       </div>
     </nav>
   </header>
-  <Dialog v-model:visible="isLogoutVisible" modal header='Ready to sign out?' :style="{ width: '25rem' }">
-    <span class="block mb-8 text-surface-500 dark:text-surface-400">Are you sure you want to sign
+  <Dialog v-model:visible="isLogoutVisible" modal header='Ready to sign out?' class="w-[25rem] max-sm:w-[20rem] max-md:w-[20rem]">
+    <span class="block mb-8 text-surface-500 dark:text-surface-400 max-sm:text-sm max-md:text-sm">Are you sure you want to sign
       out of your account now?</span>
     <div class="flex justify-end gap-2">
       <Button type="button" label="No" severity="secondary" @click="isLogoutVisible = false"></Button>
@@ -20,7 +20,7 @@
   <Popover ref="popover">
     <div class="flex flex-col gap-4">
       <div>
-        <ul class="flex flex-col p-0 m-0 list-none max-sm:text-sm max-md:text-sm">
+        <ul class="flex flex-col p-0 m-0 list-none max-sm:text-xs max-md:text-xs">
           <li class="flex items-center gap-2 px-2 py-3 cursor-pointer hover:bg-emphasis rounded-border">
             Account Settings
           </li>

@@ -1,6 +1,6 @@
 <template>
     <h1 class="text-3xl text-black max-sm:text-lg max-md:text-lg">Overview</h1>
-    <div class="flex w-96 text-black gap-x-10 gap-y-8 max-sm:flex-col">
+    <div class="flex w-96 text-black gap-x-10 gap-y-8 max-sm:flex-col max-sm:max-md:gap-y-0">
         <div class="my-5 border m-1 p-3 bg-white">
             <p class="text-[12px]">Total Views</p>
             <div>

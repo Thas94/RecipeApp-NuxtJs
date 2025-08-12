@@ -21,7 +21,7 @@
         </div> -->
     </aside>
     <div class="lg:hidden justify-between bg-orange-300 text-white w-15">
-      <div class="p-4 text-xl font-bold py-[30px] bg-orange-500">
+      <div class="p-4 text-xl font-bold py-[37px] bg-orange-500">
         <span class="pi pi-bars ml-2"></span>
       </div>
       <nav class="px-4 space-y-2 py-[30px]">
