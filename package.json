@@ -19,6 +19,7 @@
     "@primevue/forms": "^4.3.5",
     "@sidebase/nuxt-auth": "^1.0.0",
     "@tailwindcss/postcss": "^4.1.11",
+    "chart.js": "^4.5.0",
     "next-auth": "~4.21.1",
     "nuxt": "^3.16.0",
     "pinia": "^3.0.3",

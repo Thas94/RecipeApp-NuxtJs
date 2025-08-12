@@ -1,12 +1,10 @@
 <template>
-    <ThemeSwitcher />
     <div class="card">
-        <Chart type="line" :data="chartData" :options="chartOptions" class="h-[30rem] w-[30rem]" />
+        <Chart type="line" :data="chartData" :options="chartOptions" class="h-[30rem] w-[68rem] mt-5 bg-white p-5" />
     </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
+<script setup lang="ts">
 
 onMounted(() => {
     chartData.value = setChartData();
@@ -29,7 +27,6 @@ const setChartData = () => {
                 borderColor: documentStyle.getPropertyValue('--p-blue-300'),
                 tension: 0.4,
                 backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                borderColor: '#3b82f6',
             },
             {
                 label: 'Total Views',
@@ -38,7 +35,6 @@ const setChartData = () => {
                 borderColor: documentStyle.getPropertyValue('--p-purple-300'),
                 tension: 0.4,
                 backgroundColor: 'rgba(180, 137, 222, 0.2)',
-                borderColor: '#ab68eb78',
             }
         ]
     };

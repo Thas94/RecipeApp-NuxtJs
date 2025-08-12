@@ -37,7 +37,7 @@
     <!-- Main Content -->
     <main class="flex-1 bg-gray-100">
       <AdminBaseNavigation />
-      <NuxtPage class="py-10 w-[66%] bg-black ml-52"/>
+      <NuxtPage class="py-10 w-[66%] ml-52"/>
     </main>
   </div>
 
